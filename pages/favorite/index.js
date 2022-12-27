@@ -4,11 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from "../../components/auth_context";
 import FavoriteCard from "../../components/favorite_card";
 import { ServerURI } from "../../config";
+import { useTranslation } from "react-i18next";
 
 const Favorite = () => {
     const { isAuth } = useContext(AuthContext);
     const [favorite, setFavorite] = useState([]);
     const [cart, setCart] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (isAuth) {
@@ -55,13 +57,13 @@ const Favorite = () => {
     return (
         <>
             <section className="favorite" dir="auto">
-                <div className="page-title">Favorite</div>
+                <div className="page-title">{t('favorite')}</div>
                 <div className="container">
                     {
                         favorite.length > 0 &&
                             <div className="fav-btns">
-                                <button className="add-all-to-bag" onClick={onAddAllFavorite}>Add All To Bag</button>
-                                <button className="del-all" onClick={onDelAllFavorite}>Delete All</button>
+                                <button className="add-all-to-bag" onClick={onAddAllFavorite}>{t('add_all_to_bag')}</button>
+                                <button className="del-all" onClick={onDelAllFavorite}>{t('delete_all')}</button>
                             </div>
                     }
                     {
@@ -73,7 +75,7 @@ const Favorite = () => {
                                     ))
                                 }
                             </div> :
-                            <div className="d-flex justify-content-center">There are no favorite products</div>
+                            <div className="d-flex justify-content-center">{t('message.there_are_no_favorite_products')}</div>
                     }
                 </div>
             </section>

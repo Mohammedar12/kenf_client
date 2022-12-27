@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Input, TextArea } from "../../components/text_field";
 import { ServerURI } from '../../config';
 import Images from "../../components/image_panel";
+import { useTranslation } from 'react-i18next';
+import i18n from "../../config/i18n";
 
 const initValue = {
     name: '',
@@ -20,6 +22,7 @@ const FAQList = props => {
     const [showComplaints, setShowComplaints] = useState(initValue);
     const [showAnsweredComplaints, setShowAnsweredComplaints] = useState(initValue);
     const [allComplaints, setAllComplaints] = useState(getAllComplaints);
+    const { t } = useTranslation();
 
     useEffect(() => {
     }, [allComplaints]);
@@ -70,7 +73,7 @@ const FAQList = props => {
     }
 
     return (
-        <div className="container d-flex w-100" dir="rtl">
+        <div className="container d-flex w-100" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
             <div className="content_one w-100 ">
                 <div className="content">
                     <div className="accordion" id="accordionFlushExample1">
@@ -79,22 +82,22 @@ const FAQList = props => {
                                 <button className="accordion-button " type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseTicketOne" aria-expanded="false"
                                     aria-controls="flush-collapseTicketOne">
-                                    New Tickit
+                                    {t('new_ticket')}
                                 </button>
                             </h2>
                             <div id="flush-collapseTicketOne" className="accordion-collapse collapse show"
                                 aria-labelledby="flush-ticketOne" data-bs-parent="#accordionFlushExample1">
                                 <div className="accordion-body">
                                     <form id='form_elem' className="Ticket_form" onSubmit={handleSubmit(onSubmit)}>
-                                        <div className="inputs" dir="rtl">
+                                        <div className="inputs" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
                                             <Input 
                                                 type="text" 
                                                 name="title"
                                                 errors={errors} 
                                                 register={register}
-                                                placeholder="Ticket Title"
+                                                placeholder={t('ticket_title')}
                                                 validationSchema={{ 
-                                                    required: "Title field is required",
+                                                    required: t('error.title.required'),
                                                 }}
                                             />
                                             <Input 
@@ -102,9 +105,9 @@ const FAQList = props => {
                                                 name="name"
                                                 errors={errors} 
                                                 register={register}
-                                                placeholder="Your Name"
+                                                placeholder={t('your_name')}
                                                 validationSchema={{ 
-                                                    required: "Name field is required",
+                                                    required: t('error.name.required'),
                                                 }}
                                             />
                                             <Input 
@@ -112,9 +115,9 @@ const FAQList = props => {
                                                 name="email"
                                                 errors={errors} 
                                                 register={register}
-                                                placeholder="Email"
+                                                placeholder={t('email')}
                                                 validationSchema={{ 
-                                                    required: "Email field is required",
+                                                    required: t('error.email.required'),
                                                 }}
                                             />
                                             <TextArea 
@@ -123,9 +126,9 @@ const FAQList = props => {
                                                 name="complaints"
                                                 errors={errors} 
                                                 register={register}
-                                                placeholder="The Complaints"
+                                                placeholder={t('complaint')}
                                                 validationSchema={{ 
-                                                    required: "Complaints field is required",
+                                                    required: t('error.complaint.required'),
                                                 }}
                                             />
                                         </div>
@@ -134,11 +137,11 @@ const FAQList = props => {
                                                 <input type="file" name="files" {...register('files')} id="file" />
                                                 <label htmlFor="file" id="image_panel" className="upload_btn d-flex flex-column align-items-center gap-3">
                                                     <Images src="../images/upload_photo.png" alt="" width="80px" />
-                                                    <span>Upload Photo For Problem</span>
+                                                    <span>{t('upload_photo_for_problem')}</span>
                                                 </label>
                                             </div>
                                             <div className="submit">
-                                                <input type="submit" value="Send Ticket" />
+                                                <input type="submit" value={t('send_ticket')} />
                                             </div>
                                         </div>
                                     </form>
@@ -156,7 +159,7 @@ const FAQList = props => {
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                                     aria-controls="panelsStayOpen-collapseOne">
-                                    Tickets Under Review
+                                    {t('tickets_under_review')}
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse"
@@ -178,13 +181,13 @@ const FAQList = props => {
                                                     </div>
                                                     <div className="modal-body">
                                                         <form action="" className="Ticket_form ">
-                                                            <div className="inputs" dir="rtl">
-                                                                <input type="text" placeholder="Your Name" disabled
+                                                            <div className="inputs" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+                                                                <input type="text" placeholder={t('your_name')} disabled
                                                                     value={showComplaints?.name} />
-                                                                <input type="email" placeholder="Email" disabled
+                                                                <input type="email" placeholder={t('email')} disabled
                                                                     value={showComplaints?.email} />
                                                                 <textarea name="" id="" rows="4"
-                                                                    placeholder="The Complaint"
+                                                                    placeholder={t('complaint')}
                                                                     defaultValue={showComplaints?.complaints}
                                                                     disabled />
                                                             </div>
@@ -194,7 +197,7 @@ const FAQList = props => {
                                                         </form>
                                                     </div>
                                                     <div className="modal-footer justify-content-center">
-                                                        <button type="button" className="btn btn-dark ticket-modal-btn" data-bs-dismiss="modal" id="close-review">Close</button>
+                                                        <button type="button" className="btn btn-dark ticket-modal-btn" data-bs-dismiss="modal" id="close-review">{t('close')}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -208,7 +211,7 @@ const FAQList = props => {
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
                                     aria-controls="panelsStayOpen-collapseTwo">
-                                    Tickets Answered
+                                    {t('tickets_answered')}
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse"
@@ -229,10 +232,10 @@ const FAQList = props => {
                                                         <h5 className="ticket-modal-title ">{showAnsweredComplaints.title}</h5>
                                                     </div>
                                                     <div className="modal-body text-center">
-                                                        <p>We Have Answered You On Your Email</p>
+                                                        <p>{t('we_have_answered_you_on_your_email')}</p>
                                                     </div>
                                                     <div className="modal-footer justify-content-center">
-                                                        <button type="button" className="btn btn-dark ticket-modal-btn" data-bs-dismiss="modal" id="close-answered">Close</button>
+                                                        <button type="button" className="btn btn-dark ticket-modal-btn" data-bs-dismiss="modal" id="close-answered">{t('close')}</button>
                                                     </div>
                                                 </div>
                                             </div>

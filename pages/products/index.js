@@ -7,6 +7,8 @@ import { ProductCarousel } from "../../_service";
 import ProductCard from "../../components/product_card";
 import Images from "../../components/image_panel";
 import { ServerURI } from "../../config";
+import i18n from "../../config/i18n";
+import { useTranslation } from "react-i18next";
 
 const Products = props => {
     const router = useRouter();
@@ -16,6 +18,7 @@ const Products = props => {
     const [profile, setProfile] = useState();
     const [currentProduct, setCurrentProduct] = useState(getAllProducts.filter(item => item.id == router.query.product)[0]);
     const [selectedImage, setSelectedImage] = useState(currentProduct.images[0].id);
+    const { t } = useTranslation();
 
     useEffect(() => {
         ProductCarousel();
@@ -103,30 +106,30 @@ const Products = props => {
                     <div className="product-details">
                         <div className="title">
                             <div className="box-title">
-                                <h5>{currentProduct.name_en}</h5>
+                                <h5>{i18n.language === 'en' ? currentProduct.name_en : currentProduct.name_ar}</h5>
                             </div>
                         </div>
                         {
                             currentProduct.ringSize != 0 &&
                                 <div className="sizes flex-column">
-                                    <div className="size-title">Size :</div>
+                                    <div className="size-title">{t('size')} :</div>
                                     <div className="box">
                                         <div className="size-nums btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                             <div className="btn-group" role="group" aria-label="First group">
                                                 {
                                                     getAllSizes.map((item, index) => (
-                                                        <button type="button" key={index} className="btn btn-primary" style={{background: item.id == currentProduct.ringSize ? '#1f4369' : '#ebc58d', color: item.id == currentProduct.ringSize ? '#ebc58d' : '#1f4369'}}>{console.log(item.id, currentProduct.ringSize)}{item.name_en}</button>
+                                                        <button type="button" key={index} className="btn btn-primary" style={{background: item.id == currentProduct.ringSize ? '#1f4369' : '#ebc58d', color: item.id == currentProduct.ringSize ? '#ebc58d' : '#1f4369'}}>{console.log(item.id, currentProduct.ringSize)}{i18n.language === 'en' ? item.name_en : item.name_ar}</button>
                                                     ))
                                                 }
                                             </div>
                                         </div>
-                                        <div className="size-guide"><a href="">Size guide</a></div>
+                                        <div className="size-guide"><a href="">{t('size_guide')}</a></div>
                                     </div>
                                 </div>
                         }
                         <div className="price fw-bold">
-                            <div className="price-title">Price :</div>
-                            <div className="the-price">SAR {currentProduct.extra_price}</div>
+                            <div className="price-title">{t('price')} :</div>
+                            <div className="the-price">{t('sar')} {currentProduct.extra_price}</div>
                         </div>
                         <div className="desc accordion" id="accordionExample">
                             <div className="accordion-item">
@@ -134,13 +137,13 @@ const Products = props => {
                                     <button className="accordion-button collapsed text-end pe-0 d-flex" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                        Description
+                                        {t('description')}
                                     </button>
                                 </h2>
                                 <div id="collapseThree" className="accordion-collapse collapse text-end"
                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div className="item the-desc pt-2">
-                                        {currentProduct.description_en}
+                                        {i18n.language === 'en' ? currentProduct.description_en : currentProduct.description_ar} 
                                     </div>
                                 </div>
                             </div>
@@ -149,24 +152,24 @@ const Products = props => {
                                     <button className="accordion-button collapsed text-end pe-0 d-flex" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                        Specifications
+                                        {t('specifications')}
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" className="accordion-collapse collapse text-end" aria-labelledby="headingTwo"
                                     data-bs-parent="#accordionExample">
                                     <div className="item the-features pt-2">
                                         <div className="feature">
-                                            <div className="karats">karat : <span className="num pe-2">{currentProduct.purity_id[0].name_en}</span></div>
+                                            <div className="karats">{t('karat')} : <span className="num pe-2">{i18n.language === 'en' ? currentProduct.purity_id[0].name_en : currentProduct.purity_id[0].name_ar}</span></div>
                                         </div>
                                         <div className="feature pt-2">
-                                            <div className="weights">weight : <span className="num pe-2 ">{currentProduct.weight}g</span></div>
+                                            <div className="weights">{t('weight')} : <span className="num pe-2 ">{currentProduct.weight}{t('gram_unit')}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="shearing">
-                            <span className="shearing-title">Share the product with your loved one</span>
+                            <span className="shearing-title">{t('share_the_product_with_your_loved_one')}</span>
                             <ul className="media d-flex gap-2 align-items-center">
                                 <li><i className="fa-brands fa-whatsapp fa-1x"></i></li>
                                 <li><i className="fa-brands fa-instagram fa-1x"></i></li>
@@ -174,14 +177,14 @@ const Products = props => {
                             </ul>
                         </div>
                         <div className="btns">
-                            <button className="add-bag" onClick={onAddCart} disabled={currentProduct.quantity > 0 ? false : true}> Add To Bag<i className="fa-solid fa-bag-shopping fa-1x pe-3 "></i></button>
+                            <button className="add-bag" onClick={onAddCart} disabled={currentProduct.quantity > 0 ? false : true}> {t('add_to_bag')}<i className="fa-solid fa-bag-shopping fa-1x pe-3 "></i></button>
                             {
                                 isAuth && currentProduct.quantity > 0 ?
-                                    <Link href={{ pathname: '/checkout', query: { product: router.query.product, cart: false } }}><button className="buy-now">Buy Now</button></Link> :
+                                    <Link href={{ pathname: '/checkout', query: { product: router.query.product, cart: false } }}><button className="buy-now">{t('buy_now')}</button></Link> :
                                     (
                                         currentProduct.quantity > 0 ?
-                                            <button className="buy-now" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Buy Now</button> :
-                                            <button className="buy-now" disabled>Buy Now</button>
+                                            <button className="buy-now" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{t('buy_now')}</button> :
+                                            <button className="buy-now" disabled>{t('buy_now')}</button>
                                     )
                             }
                         </div>

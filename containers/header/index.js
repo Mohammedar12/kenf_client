@@ -10,6 +10,7 @@ import Topbar from "../../components/topbar_panel";
 import Mobile from "../../components/mobile_panel";
 
 import { ServerURI } from "../../config";
+import { useTranslation } from "react-i18next";
 
 const initEmailVal = {
     email: '',
@@ -32,6 +33,8 @@ const Header = () => {
 
     const [type, setType] = useState(null);
     const { isAuth, setIsAuth } = useContext(AuthContext);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         // GET Product
@@ -82,7 +85,7 @@ const Header = () => {
             } else {
                 onInitialModal();
 
-                toast.error('Confirmcode is wrong', {
+                toast.error(t('message.confirmcode_is_wrong'), {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: true,
@@ -102,7 +105,7 @@ const Header = () => {
             } else {
                 onInitialModal();
 
-                toast.error('Confirmcode is wrong', {
+                toast.error(t('message.confirmcode_is_wrong'), {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: true,
@@ -133,7 +136,7 @@ const Header = () => {
                         <div className="modal-body border-0 p-0 pb-3">
                             {
                                 type == null &&
-                                    <span className="login-title text-center d-block">Choese Way To login</span>
+                                    <span className="login-title text-center d-block">{t('choose_way_to_login')}</span>
                             }
                             {
                                 type == "email" &&
@@ -141,18 +144,18 @@ const Header = () => {
                                         <form className="field-email show-this-block d-none">
                                             <div
                                                 className="email-input d-flex flex-column align-items-end pe-3 ps-3  m-2 position-relative">
-                                                <label htmlFor="email">* Email</label>
-                                                <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1 rounded-1" type="email" id="email" placeholder="Email" style={{border: "1px solid #ccc"}} value={email.email} onChange={e => setEmail({...email, email: e.target.value})} required />
+                                                <label htmlFor="email">* {t('email')}</label>
+                                                <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1 rounded-1" type={t('email')} id="email" placeholder="Email" style={{border: "1px solid #ccc"}} value={email.email} onChange={e => setEmail({...email, email: e.target.value})} required />
                                                 <i className="fa-solid fa-envelope p-1 position-absolute" style={{top: 33.3, left: 20}}></i>
                                             </div>
 
                                             <div className={"verification-email d-flex flex-column align-items-end pe-3 ps-3 m-2 position-relative " + (verifyCode == "0000" ? "d-none" : "show-this-flex")}>
-                                                <label htmlFor="email">* Verification code</label>
-                                                <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1" type="text" id="email" name="code" placeholder="Enter verification code" maxLength="4" style={{border: "1px solid #ccc"}} value={email.emailConfirmCode} onChange={e => setEmail({...email, emailConfirmCode: e.target.value})} required />
+                                                <label htmlFor="email">* {t('verification_code')}</label>
+                                                <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1" type="text" id="email" name="code" placeholder={t('enter_verification_code')} maxLength="4" style={{border: "1px solid #ccc"}} value={email.emailConfirmCode} onChange={e => setEmail({...email, emailConfirmCode: e.target.value})} required />
                                             </div>
 
                                             <div className="submit w-100  text-center pe-4 ps-4">
-                                                <input type="button" className="btn w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value="Go" onClick={showEmailCode} />
+                                                <input type="button" className="btn w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value={t('go')} onClick={showEmailCode} />
                                             </div>
                                         </form>
                                     </>
@@ -165,21 +168,21 @@ const Header = () => {
 
                                             <div
                                                 className="phone-input d-flex flex-column align-items-end pe-3 ps-3  m-2 position-relative">
-                                                <label htmlFor="">* phone</label>
+                                                <label htmlFor="">* {t('phone')}</label>
                                                 <PhoneInput width="100%" className="mt-1" country={'sa'} value={phone.phone} onChange={e => setPhone({...phone, phone: e})} onlyCountries={['sa', 'eg', 'dz', 'bh', 'kw']} />
                                             </div>
 
                                             {
                                                 verifyCode != "0000" &&
                                                     <div className="verification-phone d-flex flex-column align-items-end pe-3 ps-3 m-2 position-relative d-none show-this-flex">
-                                                        <label htmlFor="phone">* Verification code</label>
-                                                        <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1" type="text" id="phone" name="code" placeholder="Enter verification code" maxLength="4" style={{border: "1px solid #ccc"}} value={phone.phoneConfirmCode} onChange={e => setPhone({...phone, phoneConfirmCode: e.target.value})} required />
+                                                        <label htmlFor="phone">* {t('verification_code')}</label>
+                                                        <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1" type="text" id="phone" name="code" placeholder={t('enter_verification_code')} maxLength="4" style={{border: "1px solid #ccc"}} value={phone.phoneConfirmCode} onChange={e => setPhone({...phone, phoneConfirmCode: e.target.value})} required />
                                                         {/* { phone.phoneConfirmCode != verifyCode && phone.phoneConfirmCode.length == 4 && <p className='form_error'>Confirm code is wrong</p> } */}
                                                     </div>
                                             }
 
                                             <div className="submit w-100  text-center pe-4 ps-4">
-                                                <input type="button" className="btn  w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value="Go" onClick={showPhoneCode} required />
+                                                <input type="button" className="btn  w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value={t('go')} onClick={showPhoneCode} required />
                                             </div>
                                         </form>
                                     </>
@@ -189,10 +192,10 @@ const Header = () => {
                             type == null &&
                                 <div className="modal-footer justify-content-center ">
                                     <button type="button" className="btn email login-modal-btn" onClick={() => setType('email')}>
-                                        Email <i className="fa-solid fa-envelope p-1"></i>
+                                        {t('email')} <i className="fa-solid fa-envelope p-1"></i>
                                     </button>
                                     <button type="button" className="btn phone login-modal-btn" onClick={() => setType('phone')}>
-                                        Phone <i className=" fa-solid fa-mobile p-1"></i>
+                                        {t('phone')} <i className=" fa-solid fa-mobile p-1"></i>
                                     </button>
                                 </div>
                         }

@@ -6,6 +6,8 @@ import { ServerURI } from '../../config';
 import Images from "../../components/image_panel";
 import CardPanel from "../../components/card_panel";
 import AddressPanel from "../../components/address_panel";
+import { useTranslation } from "react-i18next";
+import i18n from "../../config/i18n";
 
 const Profile = () => {
     const { register, handleSubmit, setValue } = useForm();
@@ -16,6 +18,7 @@ const Profile = () => {
         cardExpire: '',
         cardCVV: ''
     });
+    const { t } = useTranslation();
 
     axios.post(`${ServerURI}/getProfile`, { token: sessionStorage.getItem('token') })
         .then(res => {
@@ -70,13 +73,13 @@ const Profile = () => {
         axios.post(`${ServerURI}/profile`, isChecked ? {token: sessionStorage.getItem('token'), ...data, ...billingAddress, cardType: cardType} : {token: sessionStorage.getItem('token'), ...data, cardType: cardType})
             .then(res => {
                 if (res.data.nModified == 1)
-                    toast.success('Profile is saved', {
+                    toast.success(t('message.profile_saved'), {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: true,
                     });
                 else
-                    toast.error('Profile is unsaved', {
+                    toast.error(t('error.profile_not_saved'), {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: true,
@@ -87,33 +90,33 @@ const Profile = () => {
 
     return (
         <section className="profile">
-            <div className="page-title">My Profile</div>
+            <div className="page-title">{t('my_profile')}</div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="container" dir="rtl">
+                <div className="container" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
                     <div className="content_one">
                         <div className="personal-info">
-                            <div className="title">Personal Info</div>
+                            <div className="title">{t('personal_info')}</div>
                             <div className="box">
                                 <div className="field">
                                     <input type="text" {...register("name")} required />
-                                    <label htmlFor="">Full Name</label>
+                                    <label htmlFor="">{t('full_name')}</label>
                                 </div>
                                 <div className="field">
                                     <input type="text" {...register("phone")} required />
-                                    <label htmlFor="">Phone number</label>
+                                    <label htmlFor="">{t('phone')}</label>
                                 </div>
 
                             </div>
                             <div className="box">
                                 <div className="field">
                                     <input type="email" {...register("email")} required />
-                                    <label htmlFor="">Email</label>
+                                    <label htmlFor="">{t('email')}</label>
                                 </div>
                             </div>
                         </div>
                         <div className="billing-info">
                             <div className="payments" dir="auto">
-                                <div className="title">Payment Method</div>
+                                <div className="title">{t('payment_method')}</div>
                                 <div className="payment_methods d-flex">
                                     <div className="method credit-card" id="credit-card">
                                         <button type="button" id="credit_btn" onClick={() => setCardType('credit')}>
@@ -151,22 +154,22 @@ const Profile = () => {
                         <div className="address">
                             <div className="new-address" style={{overflow: "hidden"}}>
                                 <div className="header">
-                                    <label htmlFor="">Add Address</label>
+                                    <label htmlFor="">{t('add_address')}</label>
                                 </div>
                                 <div className="address-info" dir="auto">
                                     <AddressPanel type="address" register={register} isChecked={isChecked} />
                                     <div className="check d-flex gap-1">
                                         <input type="checkbox" id="checkbox" onChange={checkedBox} checked={isChecked} />
-                                        <label htmlFor="checkbox">Payment and shipping address are the same</label>
+                                        <label htmlFor="checkbox">{t('payment_and_shipping_address_are_the_same')}</label>
                                     </div>
                                 </div>
                                 {
                                     !isChecked &&
                                         <div className="billing-address">
                                             <div className="header">
-                                                <label htmlFor="">Billing Address</label>
+                                                <label htmlFor="">{t('billing_address')}</label>
                                             </div>
-                                            <div className="address-info" dir="rtl">
+                                            <div className="address-info" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
                                                 <AddressPanel type="billingAddress" register={register} isChecked={isChecked} />
                                             </div>
                                         </div>
@@ -175,7 +178,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="save-data">Save</button>
+                <button type="submit" className="save-data">{t('save')}</button>
             </form>
             <ToastContainer />
         </section>

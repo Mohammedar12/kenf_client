@@ -14,6 +14,7 @@ import '../styles/css/all.min.css';
 import '../public/build/css/intlTelInput.min.css';
 import '../styles/css/style.css';
 import 'react-toastify/dist/ReactToastify.css';
+import "../config/i18n";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

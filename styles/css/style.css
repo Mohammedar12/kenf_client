@@ -3469,9 +3469,14 @@ footer .contact-us ul .media {
   margin: 10px 0;
 }
 
-.complaints .accordion-button::after {
+.complaints .container[dir=rtl] .accordion-button::after {
   margin-right: auto;
   margin-left: 0;
+}
+
+.complaints .container[dir=ltr] .accordion-button::after {
+  margin-right: 0;
+  margin-left: auto;
 }
 
 .complaints .accordion-button:not(.collapsed) {
@@ -3547,9 +3552,14 @@ footer .contact-us ul .media {
   margin: 10px 0;
 }
 
-.faqs .accordion-button::after {
+.faqs .container[dir=rtl] .accordion-button::after {
   margin-right: auto;
   margin-left: 0;
+}
+
+.faqs .container[dir=ltr] .accordion-button::after {
+  margin-right: 0;
+  margin-left: auto;
 }
 
 .faqs .accordion-button:not(.collapsed) {

@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 // import { ExclusiveCarousel } from '../../_service';
 import ExclusiveCard from '../../components/exclusive_card';
+import { useTranslation } from 'react-i18next';
 
 const ExclusiveProducts = props => {
     const { datas } = props;
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         $(".exclusive-carousel").owlCarousel({
@@ -34,7 +37,7 @@ const ExclusiveProducts = props => {
 
     return (
         <section className="exclusive pt-md-3 pb-md-3 pt-1 pb-1 position-relative ">
-            <h3 className="section-title">Exclusive Products</h3>
+            <h3 className="section-title">{t('exclusive_products')}</h3>
             <div className="exclusive-carousel owl-carousel owl-theme ">
                 {
                     datas.filter(item => item.isExclusive && !item.deleted && !item.hidden).map((item, index) => (

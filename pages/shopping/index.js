@@ -5,11 +5,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../../components/auth_context';
 import { ServerURI } from "../../config";
 import ShoppingCard from "../../components/shopping_card";
+import { useTranslation } from 'react-i18next';
 
 const Shopping = () => {
     const { isAuth } = useContext(AuthContext);
     const [state, setState] = useState({});
     const [products, setProducts] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (isAuth) {
@@ -80,26 +82,26 @@ const Shopping = () => {
     return (
         <>
             <section className="bag">
-                <div className="page-title">Shopping Bag</div>
+                <div className="page-title">{t('shopping_bag')}</div>
                 <div className="container">
                     {
                         products.length > 0 &&
                             <div className="bag-info">
                                 <div className="costs" >
                                     <div className="total-bag">
-                                        <span>Total Bag :</span>
-                                        <span className="amount">SAR {state.totalShoppingBag ? state.totalShoppingBag : 0}</span>
+                                        <span>{t('total_shopping_bag')} :</span>
+                                        <span className="amount">{t('sar')} {state.totalShoppingBag ? state.totalShoppingBag : 0}</span>
                                     </div>
                                     <div className="tax">
-                                        <span>tax 15% :</span>
-                                        <span className="amount">SAR {state.tax15 ? state.tax15 : 0}</span>
+                                        <span>{t('tax')} 15% :</span>
+                                        <span className="amount">{t('sar')} {state.tax15 ? state.tax15 : 0}</span>
                                     </div>
                                 </div>
                                 <div className="continue">
                                     {
                                         isAuth ? 
-                                            <Link href={{ pathname: '/checkout', query: { product: 0, cart: true } }}><button className="continue__btn">Continue Payment</button></Link> :
-                                            <button className="continue__btn" onClick={restAll} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Continue Payment</button>
+                                            <Link href={{ pathname: '/checkout', query: { product: 0, cart: true } }}><button className="continue__btn">{t('continue_payment')}</button></Link> :
+                                            <button className="continue__btn" onClick={restAll} data-bs-toggle="modal" data-bs-target="#staticBackdrop">{t('continue_payment')}</button>
                                     }
                                 </div>
                             </div>
@@ -113,7 +115,7 @@ const Shopping = () => {
                                 ))
                             }
                         </div> :
-                        <div className='bag-text-center'>There are no products in shopping bag</div>
+                        <div className='bag-text-center'>{t('message.no_products_shopping_bag')}</div>
                     }
                 </div>
             </section>

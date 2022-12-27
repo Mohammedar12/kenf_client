@@ -4,6 +4,7 @@ import Banner from "../../components/banner_panel";
 import Filter from "../../components/filter_panel";
 import ProductCard from "../../components/product_card";
 import { ServerURI } from "../../config";
+import { useTranslation } from 'react-i18next';
 
 const Category = props => {
     const router = useRouter();
@@ -15,6 +16,7 @@ const Category = props => {
         { name: 'purity', filter: [] },
         { name: 'color', filter: [] },
     ]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (router.query.category) {
@@ -63,7 +65,7 @@ const Category = props => {
                             }
                         </div>
                     </div> :
-                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Sorry, There is no product :(</div>
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>{t('sorry_there_is_no_product')}</div>
             }
         </>
     )
