@@ -23,7 +23,12 @@ const PaymentStatus = (props) => {
                 }
                 else{
                     setStatus(response.data.transactionStatus);
-                    setMessage(response.data.message);
+                    if(status === 'Failed'){
+                        setMessage("Transaction failed due to "+response.data.message);
+                    }
+                    else{
+                        setMessage(response.data.message);
+                    }
                 }
             }
             catch(e){
