@@ -14,7 +14,9 @@ const PaymentStatus = (props) => {
         (async()=>{
             setLoading(true);
             try{
-                response = await axios.post(`${ServerURI}/order/paymentStatus`,{},{ params: { paymentId: props.paymentId }});
+                response = await axios.post(`${ServerURI}/order/paymentStatus`,{session: sessionStorage.getItem('token'),},{ 
+                    params: { paymentId: props.paymentId }
+                });
                 if(response.data.IsSuccess){
                     setStatus('Paid');
                     setMessage('Thank you for the purchase. We received your order.');
