@@ -18,7 +18,7 @@ const PaymentStatus = (props) => {
                     params: { paymentId: props.paymentId }
                 });
                 if(response.data.IsSuccess){
-                    setStatus('Paid');
+                    setStatus('Succss');
                     setMessage('Thank you for the purchase. We received your order.');
                 }
                 else{
@@ -57,9 +57,9 @@ const PaymentStatus = (props) => {
                 <div className='row d-flex flex-column justify-content-center align-items-center' style={{ height: '70vh', ...( status === 'Failed' || status === 'Error' ? {color: 'red'} : {}) }}>
                     { ( status === 'Error' && <img style={{ width: 200, padding: 10 }} src='/images/error.png' alt='Error'/> ) }
                     { ( status === 'Failed' && <img style={{ width: 200, padding: 10 }} src='/images/credit-card.png' alt='Payment failed'/> ) }
-                    { ( status === 'Paid' && <img style={{ width: 200, padding: 10 }} src='/images/successful.png' alt='Order placed successfully.'/> ) }
+                    { ( status === 'Succss' && <img style={{ width: 200, padding: 10 }} src='/images/successful.png' alt='Order placed successfully.'/> ) }
                     {message}
-                    { ( status === 'Paid' && <div className='d-flex justify-content-center pt-4'><button className='btn btn-outline-success'>My Orders</button></div> ) }
+                    { ( status === 'Succss' && <div className='d-flex justify-content-center pt-4'><button className='btn btn-outline-success'>My Orders</button></div> ) }
                 </div>
             </div>
     )
