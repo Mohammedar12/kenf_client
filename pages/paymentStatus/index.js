@@ -3,12 +3,15 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import Spinner from "../../components/spinner";
 import { useEffect, useState } from 'react';
+import thankyouStyle from '../../components/thank_you.module.css';
+import Link from 'next/link';
 
 const PaymentStatus = (props) => {
     const { t } = useTranslation();
-    const [ loading, setLoading ] = useState(true);
-    const [ status, setStatus ] = useState();
+    const [ loading, setLoading ] = useState(false);
+    const [ status, setStatus ] = useState('Succss');
     const [ message, setMessage ] = useState();
+    const [ orderId, setOrderId ] = useState();
 
     useEffect(()=>{
         (async()=>{
@@ -18,6 +21,7 @@ const PaymentStatus = (props) => {
                     params: { paymentId: props.paymentId }
                 });
                 if(response.data.IsSuccess){
+                    setStatus(response.data.orderId);
                     setStatus('Succss');
                     setMessage('Thank you for the purchase. We received your order.');
                 }
@@ -54,6 +58,35 @@ const PaymentStatus = (props) => {
                     </div>
                 </div>
             </div>
+        );
+    }
+
+    if(status === 'Succss'){
+        return (
+            <>
+                <div className='container' style={{ height: '70vh' }}>
+                    <div className='row d-flex flex-column justify-content-center align-items-center' style={{ height: '70vh' }}>
+                        <div className={["d-flex flex-column gap-3 justify-content-center align-items-center"]}>
+                            <div className={[thankyouStyle.thanksMsg,"d-flex flex-column align-items-center gap-2 text-center"]}>
+                                <i className="fa-regular fa-face-smile-beam fa-3x"></i>
+                                <h1 className="fw-light">Thank You</h1>
+                                <p>Thanks For Choosing Us , Enjoy Your Products ! <br /> We Hope To See You Soon
+                                    Here ;</p>
+                            </div>
+                            <div className={thankyouStyle.orderNumber}>
+                                Your Order Number Is <span className="fw-bold">#{orderId}</span>
+                            </div>
+                            <div className={thankyouStyle.noteMsg}>
+                                <span>notes :</span> We Will Send A Message To You If Your Order Has Been Shipped
+                            </div>
+                            <div className={thankyouStyle.buttons}>
+                                <Link href='/orders'>MY ORDERS</Link>
+                                <Link href='/'>HOME</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
         );
     }
 
