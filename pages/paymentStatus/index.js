@@ -21,7 +21,7 @@ const PaymentStatus = (props) => {
                     params: { paymentId: props.paymentId }
                 });
                 if(response.data.IsSuccess){
-                    setStatus(response.data.orderId);
+                    setOrderId(response.data.orderId);
                     setStatus('Succss');
                     setMessage('Thank you for the purchase. We received your order.');
                 }
