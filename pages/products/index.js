@@ -192,7 +192,7 @@ const Products = props => {
                 </div>
             </section>
 
-            <section className="suggested-products owl-carousel owl-theme pt-2 pb-2" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+            <section className="suggested-products owl-carousel owl-theme pt-2 pb-2">
                 {
                     getAllProducts.filter(item => !item.deleted && !item.hidden)
                         .filter(item => item.group_id.id == currentProduct.group_id.id)
@@ -203,7 +203,7 @@ const Products = props => {
                         ))
                 }
             </section>
-            <section className="suggested-products owl-carousel owl-theme pt-2 pb-2" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+            <section className="suggested-products owl-carousel owl-theme pt-2 pb-2">
                 {
                     getAllProducts.filter(item => !item.deleted && !item.hidden)
                         .filter(item => item.group_id.id != currentProduct.group_id.id)
