@@ -10,6 +10,13 @@ import { ServerURI } from "../../config";
 import i18n from "../../config/i18n";
 import { useTranslation } from "react-i18next";
 
+import dynamic from "next/dynamic";
+import { fx } from "jquery";
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
+  ssr: false,
+});
+
+
 const Products = props => {
     const router = useRouter();
     const { getAllProducts, getAllSizes } = props;
@@ -20,9 +27,7 @@ const Products = props => {
     const [selectedImage, setSelectedImage] = useState(currentProduct.images[0].id);
     const { t } = useTranslation();
 
-    useEffect(() => {
-        ProductCarousel();
-    }, [])
+    const [isOpen, setIsOpen] = useState(false); 
 
     useEffect(() => {
         axios.post(`${ServerURI}/product/visit`, { id: router.query.product, visit: getAllProducts.filter(item => item.id == router.query.product)[0].visited });
@@ -74,8 +79,31 @@ const Products = props => {
         }
     }
 
+      const ViewImage = () => {
+    return (
+      <div className="viewImageModal" onClick={() => setIsOpen(false)}>
+        <OwlCarousel
+          className="viewAllImage"
+          loop
+          margin={50}
+          items={1}
+          nav
+          dots
+          onClick={(e) => e.stopPropagation()}
+        >
+          {currentProduct.images?.map((item, index) => (
+            <div className="item" key={index} style={{ cursor: "pointer" }}>
+              <Images src={ServerURI + "/getfile?id=" + item.id} alt="" />
+            </div>
+          ))}
+        </OwlCarousel>
+      </div>
+    );
+  };
+    
     return (
         <>
+        {isOpen ? <ViewImage /> : null}
             <section className="product-section" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
                 <div className="container">
                     <div className="product-imgs">
@@ -97,7 +125,7 @@ const Products = props => {
                                     </div>
                                 </div>
                             }
-                            <div className="img-container">
+                            <div className="img-container"  onClick={() => setIsOpen(true)}>
                                 <Images src={ServerURI + '/getfile?id=' + selectedImage} alt="" />
                             </div>
                             <div className="favorite-icon"></div>
