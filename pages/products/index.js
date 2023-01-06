@@ -100,7 +100,25 @@ const Products = props => {
       </div>
     );
   };
-    
+
+  const responsive = {
+    0: {
+      items: 2,
+    },
+    600: {
+      items: 2.5,
+    },
+    800: {
+      items: 2.5,
+    },
+    1000: {
+      items: 3,
+    },
+    1300: {
+      items: 4,
+    }
+  }
+
     return (
         <>
         {isOpen ? <ViewImage /> : null}
@@ -220,27 +238,33 @@ const Products = props => {
                 </div>
             </section>
 
-            <section className="suggested-products owl-carousel owl-theme pt-2 pb-2">
-                {
-                    getAllProducts.filter(item => !item.deleted && !item.hidden)
-                        .filter(item => item.group_id.id == currentProduct.group_id.id)
-                        .filter(item => item.category_id.id == currentProduct.category_id.id)
-                        .filter(item => item.id != currentProduct.id)
-                        .map((item, index) => (
-                            <ProductCard key={index} data={item} isSlide={true} />
-                        ))
-                }
-            </section>
-            <section className="suggested-products owl-carousel owl-theme pt-2 pb-2">
-                {
-                    getAllProducts.filter(item => !item.deleted && !item.hidden)
-                        .filter(item => item.group_id.id != currentProduct.group_id.id)
-                        .filter(item => item.category_id.id == currentProduct.category_id.id)
-                        .map((item, index) => (
-                            <ProductCard key={index} data={item} isSlide={true} />
-                        ))
-                }
-            </section>
+                <OwlCarousel className="suggested-products owl-carousel owl-theme pt-2 pb-2" loop margin={10}
+       autoplay={true} autoplaySpeed={1000}  
+       dragEndSpeed= {700} nav={false} dots={false} responsive={responsive}>
+        {getAllProducts
+          .filter((item) => !item.deleted && !item.hidden)
+          .filter((item) => item.group_id.id == currentProduct.group_id.id)
+          .filter(
+            (item) => item.category_id.id == currentProduct.category_id.id
+          )
+          .filter((item) => item.id != currentProduct.id)
+          .map((item, index) => (
+            <ProductCard key={index} data={item} isSlide={true} />
+          ))}
+      </OwlCarousel>
+      <OwlCarousel className="suggested-products owl-carousel owl-theme pt-2 pb-2" loop margin={10}
+       autoplay={true} autoplaySpeed={1000}  
+       dragEndSpeed= {700} nav={false} dots={false} responsive={responsive}>
+        {getAllProducts
+          .filter((item) => !item.deleted && !item.hidden)
+          .filter((item) => item.group_id.id != currentProduct.group_id.id)
+          .filter(
+            (item) => item.category_id.id == currentProduct.category_id.id
+          )
+          .map((item, index) => (
+            <ProductCard key={index} data={item} isSlide={true} />
+          ))}
+      </OwlCarousel>
         </>
     )
 }
