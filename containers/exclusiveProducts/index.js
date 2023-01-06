@@ -8,32 +8,32 @@ const ExclusiveProducts = props => {
 
     const { t } = useTranslation();
 
-    useEffect(() => {
-        $(".exclusive-carousel").owlCarousel({
-            center: true,
-            loop: true,
-            margin: 10,
-            autoplay: true,
-            autoplaySpeed: 1000,
-            dragEndSpeed: 800,
-            nav: false,
-            dots: false,
-            responsive: {
-                0: {
-                    items: 2,
-                },
-                600: {
-                    items: 2,
-                },
-                700: {
-                    items: 3,
-                },
-                1000: {
-                    items: 3,
-                },
-            },
-        });
-    }, []);
+//     useEffect(() => {
+//         $(".exclusive-carousel").owlCarousel({
+//             center: true,
+//             loop: true,
+//             margin: 10,
+//             autoplay: true,
+//             autoplaySpeed: 1000,
+//             dragEndSpeed: 800,
+//             nav: false,
+//             dots: false,
+//             responsive: {
+//                 0: {
+//                     items: 2,
+//                 },
+//                 600: {
+//                     items: 2,
+//                 },
+//                 700: {
+//                     items: 3,
+//                 },
+//                 1000: {
+//                     items: 3,
+//                 },
+//             },
+//         });
+//     }, []);
 
     return (
         <section className="exclusive pt-md-3 pb-md-3 pt-1 pb-1 position-relative ">
