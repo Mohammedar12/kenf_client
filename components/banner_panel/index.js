@@ -7,9 +7,9 @@ import "animate.css"
 const Banner = () => {
     const { width } = useResize();
 
-    useEffect(() => {
-        BannerCarousel();
-    }, []);
+//     useEffect(() => {
+//         BannerCarousel();
+//     }, []);
 
     return (
         <section className="banners animate__animated animate__fadeInUp">
