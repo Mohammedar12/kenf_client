@@ -15,6 +15,16 @@ import '../public/build/css/intlTelInput.min.css';
 import '../styles/css/style.css';
 import 'react-toastify/dist/ReactToastify.css';
 import "../config/i18n";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
+// add jquery
+
+var $ = require("jquery");
+if (typeof window !== "undefined") {
+  window.$ = window.jQuery = require("jquery");
+}
+
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -30,12 +40,10 @@ function MyApp({ Component, pageProps }) {
     return (
       <HelmetProvider>
         <Script src="js/bootstrap.bundle.min.js" />
-        <Script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossOrigin="anonymous" />
         <Script src="https://demo.myfatoorah.com/cardview/v2/session.js" onLoad={() => setIsLoadPayment(true)}></Script>
         <Script src="https://demo.myfatoorah.com/applepay/v2/applepay.js"></Script>
         <Script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" />
-        <Script src="js/chatra.js" />
-        <Script src="js/owl.carousel.min.js" onLoad={() => setIsLoad(true)} />
+        <Script src="js/chatra.js"  onLoad={() => setIsLoad(true)} />
         {
           isLoad && isLoadPayment &&
             <AuthProvider>
