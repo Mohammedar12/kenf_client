@@ -1,24 +1,24 @@
 // transBg this to close menu and search bar
 
-let transBg = document.createElement("div");
-transBg.className = "trans-bg";
-transBg.innerHTML = "";
-document.body.appendChild(transBg);
-transBg.style.display = "none";
-// search box
+// let transBg = document.createElement("div");
+// transBg.className = "trans-bg";
+// transBg.innerHTML = "";
+// document.body.appendChild(transBg);
+// transBg.style.display = "none";
+// // search box
 
-let searchBox = document.querySelector(".search-box");
-let searchInput = document.querySelector(".search");
+// let searchBox = document.querySelector(".search-box");
+// let searchInput = document.querySelector(".search");
 
-if (transBg) {
-  transBg.addEventListener("click", (e) => {
-    if (document.querySelector(".menu-mob"))
-      document.querySelector(".menu-mob").classList.remove("menu-mob-show");
+// if (transBg) {
+//   transBg.addEventListener("click", (e) => {
+//     if (document.querySelector(".menu-mob"))
+//       document.querySelector(".menu-mob").classList.remove("menu-mob-show");
 
-    searchInput.style.display = 'none';
-    transBg.style.display = "none";
-  });
-}
+//     searchInput.style.display = 'none';
+//     transBg.style.display = "none";
+//   });
+// }
 
 
 // if (searchBox) {

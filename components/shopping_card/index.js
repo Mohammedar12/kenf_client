@@ -25,7 +25,7 @@ const ShoppingCard = props => {
     return (
         <div className="bag-product" >
             <div className="img">
-                <Images src={ServerURI + '/getfile?id=' + (images[0]?.id ? images[0]?.id : images[0])} alt="img" width={140} height={140} />
+                <Images src={ServerURI + '/getfile?id=' + (images[0]?.id ? images[0]?.id : images[0])} alt="img" />
             </div>
             <div className="info">
                 <div className="title">{i18n.language === 'en' ? name_en : name_ar}</div>

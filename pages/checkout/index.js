@@ -224,7 +224,7 @@ const Checkout = props => {
                                     products.filter(item => Object.keys(item).length > 0).map((item, index) => (
                                         <div key={index} className="order d-flex gap-2 align-items-center">
                                             <div className="order_img" >
-                                                <Images src={ServerURI + (item.images[0].link ? item.images[0].link : '/getfile?id=' + item.images[0])} width={100} height={100} alt="" />
+                                                <Images src={ServerURI + (item.images[0].link ? item.images[0].link : '/getfile?id=' + item.images[0])}  alt="" />
                                             </div>
                                             <div className="order_price">
                                                 {item.extra_price} {t('sar')}

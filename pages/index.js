@@ -28,8 +28,8 @@ const Home = props => {
             <section className="small-banner pt-3 pb-2">
                 <div className="container-fluid p-0">
                     <div className="banner">
-                        <Images classnames="banners-descktop pe-md-5 ps-md-5 pe-sm-1 ps-sm-1 " src="images/small-banner.png" alt="" />
-                        <Images classnames="banners-mobail " src="images/small-banner-mob.png" alt="" />
+                        <Images classnames="banners-descktop pe-md-5 ps-md-5 pe-sm-1 ps-sm-1 " src="images/bann4.jpg" alt="" />
+                        <Images classnames="banners-mobail " src="images/bann4.jpg" alt="" />
                     </div>
                 </div>
             </section>

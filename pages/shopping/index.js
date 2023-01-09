@@ -70,14 +70,14 @@ const Shopping = () => {
         }
     }, [products, isAuth]);
 
-    const restAll = () => {
-        document.querySelector(".login-title").classList.remove("hide-this");
-        document.querySelector(".field-email").classList.remove("show-this-block");
-        document.querySelector(".field-phone").classList.remove("show-this-block");
-        document.querySelector(".modal-footer").classList.remove("hide-this");
-        document.querySelector(".verification-email").classList.remove("show-this-flex");
-        document.querySelector(".verification-phone").classList.remove("show-this-flex");
-    }
+    // const restAll = () => {
+    //     document.querySelector(".login-title").classList.remove("hide-this");
+    //     document.querySelector(".field-email").classList.remove("show-this-block");
+    //     document.querySelector(".field-phone").classList.remove("show-this-block");
+    //     document.querySelector(".modal-footer").classList.remove("hide-this");
+    //     document.querySelector(".verification-email").classList.remove("show-this-flex");
+    //     document.querySelector(".verification-phone").classList.remove("show-this-flex");
+    // }
 
     return (
         <>
@@ -101,7 +101,7 @@ const Shopping = () => {
                                     {
                                         isAuth ? 
                                             <Link href={{ pathname: '/checkout', query: { product: 0, cart: true } }}><button className="continue__btn">{t('continue_payment')}</button></Link> :
-                                            <button className="continue__btn" onClick={restAll} data-bs-toggle="modal" data-bs-target="#staticBackdrop">{t('continue_payment')}</button>
+                                            <button className="continue__btn"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">{t('continue_payment')}</button>
                                     }
                                 </div>
                             </div>

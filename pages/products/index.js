@@ -81,6 +81,7 @@ const Products = props => {
 
       const ViewImage = () => {
     return (
+        
       <div className="viewImageModal" onClick={() => setIsOpen(false)}>
         <OwlCarousel
           className="viewAllImage"

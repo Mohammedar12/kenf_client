@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useRef , useEffect} from "react";
 import { AuthContext } from '../auth_context';
 import { useResize } from "../../utils/helper";
 import i18n from '../../config/i18n';
@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 const Mobile = props => {
     const { groups, categories } = props;
     const { isMobile } = useResize();
-    const { mobileTopbar } = useContext(AuthContext);
+    const { mobileTopbar , setMobileTopbar } = useContext(AuthContext);
 
     const { t } = useTranslation();
 
@@ -19,9 +19,20 @@ const Mobile = props => {
         i18n.changeLanguage(lang);
     }
 
+        const menu = useRef(null);
+        const closeMenu = () => {
+            if (menu.current.classList.contains("menu-mob-show") ) {
+                menu.current.classList.replace("menu-mob-show" , mobileTopbar )
+                setMobileTopbar(false)
+                        console.log(menu.current.classList);
+                      }
+            }
+
     return (
         <>
-            <div dir="rtl" className={"menu-mob accordion accordion-flush " + (mobileTopbar && isMobile && "menu-mob-show")} id="accordionFlushExample">
+            {mobileTopbar ? <div className='trans-bg' onClick={closeMenu}></div> : null}
+        
+            <div dir="rtl" ref={menu} className={"menu-mob accordion accordion-flush " + (mobileTopbar && isMobile && "menu-mob-show")} id="accordionFlushExample" onClick={(e) => e.stopPropagation()}>
                 {
                     groups.map((item, index) => (
                         <div key={index} className="accordion-item">
@@ -34,11 +45,11 @@ const Mobile = props => {
                             <div id={`flush-collapse-${index}`} className="accordion-collapse collapse" aria-labelledby={`flush-heading-${index}`}
                                 data-bs-parent="#accordionFlushExample">
                                 <ul className={`category-mob category-${item.name_en} d-flex text-center flex-column gap-1 align-items-center pt-2`}>
-                                    <h5 className="fw-bold"><Link href={{ pathname: '/group', query: { group: item.id } }}><a>{i18n.language === 'en' ? item.name_en : item.name_ar}</a></Link></h5>
+                                    <h5 className="fw-bold"><Link href={{ pathname: '/group', query: { group: item.id } }}><a onClick={closeMenu}>{i18n.language === 'en' ? item.name_en : item.name_ar}</a></Link></h5>
                                     <div className="links d-flex gap-3 flex-column">
                                         {
                                             categories.filter(item => !item.deleted).map((element, key) => (
-                                                <Link key={key} href={{ pathname: '/category', query: { category: element.id, group: item.id } }}><a>{i18n.language === 'en' ? element.name_en : element.name_ar}</a></Link>
+                                                <Link key={key} href={{ pathname: '/category', query: { category: element.id, group: item.id } }}><a onClick={closeMenu} >{i18n.language === 'en' ? element.name_en : element.name_ar}</a></Link>
                                             ))
                                         }
                                     </div>
@@ -63,6 +74,7 @@ const Mobile = props => {
                     </div>
                 </div>
             </div>
+        
             {
                 !isMobile &&
                     <nav className="btm-nav d-flex justify-content-center p-2 mt-1">

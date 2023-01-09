@@ -24,6 +24,7 @@ const Banner = () => {
 //     }, []);
 
     return (
+      <section className="banners ">
         <OwlCarousel
         className="banners-main owl-theme  "
         loop
@@ -67,6 +68,7 @@ const Banner = () => {
           )}
         </div>
       </OwlCarousel>
+      </section>
     )
 }
 

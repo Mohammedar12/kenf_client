@@ -58,7 +58,9 @@ const ExclusiveProducts = props => {
 
 
     return (
-  <OwlCarousel
+      <section className="exclusive pt-md-3 pb-md-3 pt-1 pb-1 position-relative ">
+      <h3 className="section-title"> {t("exclusive_products")} </h3>
+      <OwlCarousel
         className="exclusive-carousel owl-theme "
         responsive={responsive}
         center={true}
@@ -76,6 +78,8 @@ const ExclusiveProducts = props => {
             <ExclusiveCard key={index} data={item} />
           ))}
       </OwlCarousel>
+  </section>
+  
     )
 }
 
