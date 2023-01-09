@@ -14,6 +14,17 @@ import '../styles/css/all.min.css';
 import '../public/build/css/intlTelInput.min.css';
 import '../styles/css/style.css';
 import 'react-toastify/dist/ReactToastify.css';
+import "../config/i18n";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
+// add jquery
+
+var $ = require("jquery");
+if (typeof window !== "undefined") {
+  window.$ = window.jQuery = require("jquery");
+}
+
 
 var $ = require("jquery");
 if (typeof window !== "undefined") {

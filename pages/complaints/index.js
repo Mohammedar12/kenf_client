@@ -1,17 +1,18 @@
 import React from 'react';
 import FAQList from '../../containers/faqLists';
 import { ServerURI } from "../../config";
+import { useTranslation } from 'react-i18next';
 
 const Complaints = props => {
     const { getAllComplaints } = props;
+    const { t } = useTranslation();
     
     return (
         <>
             <section className="complaints">
                 <header className="text-center mt-5 mb-5">
-                    <h3 className="mb-4">Make A Complaint</h3>
-                    <p className="pe-4 ps-4">ستتم معالجة الشكوى خلال 48 ساعة وسيتم التواصل معكم عبر الايميل او رقم الجوال في حال
-                        معالجتها </p>
+                    <h3 className="mb-4">{t('make_a_complaint')}</h3>
+                    <p className="pe-4 ps-4">{t('complaint_description')}</p>
                 </header>
                     
                 <FAQList getAllComplaints={getAllComplaints} />

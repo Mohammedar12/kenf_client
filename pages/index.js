@@ -10,13 +10,17 @@ import ExclusiveProducts from '../containers/exclusiveProducts';
 import ShopByCategory from '../containers/shopByCategory';
 import KenfCategory from '../containers/KenfCategory';
 
+import { useTranslation } from "react-i18next";
+
 const Home = props => {
+
+    const { t } = useTranslation();
     const { getAllProducts, getAllGroups, getAllCategories } = props;
     
     return (
         <>
             <Banner />
-
+            
             <CategoryImgPanel datas={getAllGroups} />
 
             <ExclusiveProducts datas={getAllProducts} />

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ProductCard from "../../components/product_card";
 import { ServerURI } from "../../config";
+import { useTranslation } from 'react-i18next';
 
 const Search = props => {
     const router = useRouter();
     const { getAllProducts } = props;
     const [allProducts, setAllProducts] = useState(getAllProducts);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setAllProducts([...getAllProducts.filter(item => item.id == router.query.keyword)]);
@@ -26,7 +28,7 @@ const Search = props => {
                             }
                         </div>
                     </div> :
-                    <div style={{height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Sorry, There is no result for your search :(</div>
+                    <div style={{height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>{t('message.no_result_for_search')}</div>
             }
         </>
     )

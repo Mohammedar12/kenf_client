@@ -2,10 +2,13 @@ import Link from "next/link";
 import axios from "axios";
 import Images from "../image_panel";
 import { ServerURI } from "../../config";
+import { useTranslation } from "react-i18next";
+import i18n from "../../config/i18n";
 
 const FavoriteCard = props => {
     const { favorite, setFavorite, cart, setCart, toast } = props;
     const { id, name_en, name_ar, extra_price, images } = props.data;
+    const { t } = useTranslation();
 
     const onAddFavorite = () => {
         var postData = {
@@ -47,12 +50,12 @@ const FavoriteCard = props => {
                 </a></Link>
                 <div className="product-footer" dir="auto">
                     <div className="info">
-                        <h5 className="title">{name_en}</h5>
-                        <span className="price">{extra_price} SAR</span>
+                        <h5 className="title">{i18n.language === 'en' ? name_en : name_ar}</h5>
+                        <span className="price">{extra_price} {t('sar')}</span>
                     </div>
                     <div className="btns">
                         <button className="del" onClick={onDelFavorite}><i className="fa-solid fa-trash"></i></button>
-                        <button className="add-bag" onClick={onAddFavorite}>Add To Bag</button>
+                        <button className="add-bag" onClick={onAddFavorite}>{t('add_to_bag')}</button>
                     </div>
                 </div>
             </div>

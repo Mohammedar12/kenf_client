@@ -1,0 +1,87 @@
+.content {
+    color: #1f4369;
+    background-color: #fff;
+    box-shadow: -4px 4px 15px 0 #fffeff62;
+    padding: 50px 20px;
+    letter-spacing: 1.2px;
+    line-height: 1.8;
+}
+
+.orderNumber {
+    font-size: 20px;
+    color: #1f4369;
+}
+
+.orderNumber span {
+    color: #eba38d;
+}
+
+.thanksMsg{
+    position: relative;
+}
+
+.thanksMsg::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    background-color: #1f4369;
+    bottom: 0;
+    border-radius: 10px;
+}
+
+.thanksMsg p {
+    color: #eba38d;
+}
+
+.noteMsg span {
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    color: #000;
+}
+
+.noteMsg span::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 88%;
+    background-color: #000;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons a {
+    background-color: #1f4369;
+    color: #f7f7f7 !important;
+    border: 0;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    margin: 0 5px;
+}
+
+@media (max-width : 550px) {
+    .content {
+        font-size: 14px;
+    }
+}
+
+@media (max-width : 350px) {
+    .content {
+        font-size: 12px;
+    }
+
+    .orderNumber {
+        font-size: 16px;
+    }
+
+    .buttons {
+        margin-top: 10px;
+    }
+}

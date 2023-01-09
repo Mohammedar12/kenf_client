@@ -4,11 +4,13 @@ import Banner from "../../components/banner_panel";
 import ShopByCategory from "../../containers/shopByCategory";
 import ProductCard from "../../components/product_card";
 import { ServerURI } from "../../config";
+import { useTranslation } from "react-i18next";
 
 const Group = props => {
     const router = useRouter();
     const { getAllProducts, getAllCategories } = props;
     const [allProducts, setAllProducts] = useState(getAllProducts);
+    const { t } = useTranslation();
     
     useEffect(() => {
         setAllProducts(elements => [...elements.filter(item => item.group_id.id == router.query.group)])
@@ -18,7 +20,7 @@ const Group = props => {
         <>
             <Banner />
 
-            <ShopByCategory datas={getAllCategories} />
+            <ShopByCategory datas={getAllCategories} group_id={router.query.group} />
 
             {
                 allProducts.filter(item => !item.deleted && !item.hidden).length ?
@@ -31,7 +33,7 @@ const Group = props => {
                             }
                         </div>
                     </div> :
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Sorry, There is no product :(</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{t('sorry_there_is_no_product')}</div>
             }
         </>
     )

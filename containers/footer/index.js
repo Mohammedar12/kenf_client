@@ -1,78 +1,83 @@
 import Link from "next/link";
 import Images from "../../components/image_panel";
+import { useTranslation } from "react-i18next";
+import i18n from "../../config/i18n";
 
 const Footer = () => {
+
+  const { t } = useTranslation();
+
   return (
     <footer>
-      <div className="container" dir="ltr">
+      <div className="container" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       
         <div className="us">
-          <h4 className="footer-title">About Us</h4>
-          <p>Kanf is one of the largest trading platforms in the Middle East</p>
+          <h4 className="footer-title">{t('about_us')}</h4>
+          <p>{t('about_us.description')}</p>
         </div>
         <div className="may-interest-you">
-          <h4 className="footer-title">May Interest You</h4>
+          <h4 className="footer-title">{t('may_interest_you')}</h4>
           <ul>
             <li>
               <Link href="/products">
-                <a>Products</a>
+                <a>{t('products')}</a>
               </Link>
             </li>
             <li>
               <Link href="/">
-                <a>My Account</a>
+                <a>{t('my_account')}</a>
               </Link>
             </li>
             <li>
               <Link href="/shopping">
-                <a>Shopping Bag</a>
+                <a>{t('shopping_bag')}</a>
               </Link>
             </li>
             <li>
               <Link href="/">
-                <a>Size Guide</a>
+                <a>{t('size_guide')}</a>
               </Link>
             </li>
             <li>
               <Link href="/faqs">
-                <a>FAQs</a>
+                <a>{t('faqs')}</a>
               </Link>
             </li>
             <li>
               <Link href="/complaints">
-                <a>Complaints</a>
+                <a>{t('complaints')}</a>
               </Link>
             </li>
           </ul>
         </div>
         <div className="important-links">
-          <h4 className="footer-title">Important Links</h4>
+          <h4 className="footer-title">{t('important_links')}</h4>
           <ul>
             <li>
               <Link href="/">
-                <a>Terms and Conditions</a>
+                <a>{t('terms_and_conditions')}</a>
               </Link>
             </li>
             <li>
               <Link href="/">
-                <a>Privacy Policy</a>
+                <a>{t('privacy_policy')}</a>
               </Link>
             </li>
             <li>
               <Link href="/orders">
-                <a>Shipping And Delivery</a>
+                <a>{t('shipping_and_delivery')}</a>
               </Link>
             </li>
             <li>
               <Link href="/">
-                <a>Return And Exchange</a>
+                <a>{t('return_and_exchange')}</a>
               </Link>
             </li>
           </ul>
         </div>
 
         <div className="contact-us">
-          <h4 className="footer-title">Contact Us</h4>
+          <h4 className="footer-title">{t('contact_us')}</h4>
           <ul>
             <div className="media ">
               <li>
@@ -110,7 +115,7 @@ const Footer = () => {
             <div className="center-content">
               <div className="copyright">
                 <span dir="auto">
-                  All rights reserved to KENF 2022 <span>&copy;</span>
+                  {t('all_rights_reserved_to_kenf', { date: new Date() })}<span>&copy;</span>
                 </span>
               </div>
             </div>

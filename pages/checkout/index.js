@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { ServerURI } from '../../config';
 import Images from '../../components/image_panel'
 import AddressPanel from '../../components/address_panel';
+import { useTranslation } from 'react-i18next';
+import i18n from "../../config/i18n";
 
 const Checkout = props => {
     const router = useRouter();
@@ -20,6 +22,7 @@ const Checkout = props => {
     const [cardType, setCardType] = useState(null);
     const [isChecked, setIsChecked] = useState(true);
     const [isSavedAddress, setIsSavedAddress] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         axios.post(`${ServerURI}/getProfile`, { token: sessionStorage.getItem('token') })
@@ -85,13 +88,13 @@ const Checkout = props => {
                 if (res.data.nModified) {
                     setProfile({...profile, ...data, ...billingAddress});
 
-                    toast.success('New address has been added', {
+                    toast.success(t('message.address_added'), {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: true,
                     });
                 } else {
-                    toast.error('New address has never added', {
+                    toast.error(t('error.address_not_added'), {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: true,
@@ -118,7 +121,7 @@ const Checkout = props => {
                         setCheckOut({...checkOut, coupon_id: res.data.id, fullTotal: checkOut.fullTotal - discount, discount: discount});
                     }
                 } else {
-                    toast.error('Discount code does not exist', {
+                    toast.error(t('error.discount_code_not_exist'), {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: true,
@@ -137,11 +140,11 @@ const Checkout = props => {
         var access_token = '';
         
         // Get access_token using refresh_token
-        await axios.get(`${ServerURI}/order/refreshToken`)
-            .then(res => access_token = res.data.access_token)
-            .catch(err => console.log(err));
+        // await axios.get(`${ServerURI}/order/refreshToken`)
+        //     .then(res => access_token = res.data.access_token)
+        //     .catch(err => console.log(err));
 
-        var data = { session: sessionStorage.getItem('token'), token: access_token, cartType: router.query.cart, ...profile, ...checkOut, productList: products };
+        var data = { session: sessionStorage.getItem('token'), cartType: router.query.cart, ...profile, ...checkOut, productList: products, shippingId: shipping.id };
 
         await myFatoorah.submit()
             .then(function (response) {
@@ -149,15 +152,15 @@ const Checkout = props => {
                 axios.post(`${ServerURI}/order/executePayment`, {...data, ...response})
                     .then(res => {
                         if (res.data.IsSuccess) {
-                            window.open(res.data.Data.PaymentURL);
+                            window.open(res.data.Data.PaymentURL,"_self");
 
-                            axios.post(`${ServerURI}/order/createOrder`, {...data, ...response})
-                                .then(res => {
-                                    if (Object.keys(res.data).length) {
-                                        router.push('/orders');
-                                    }
-                                })
-                                .catch(err => console.log(err));
+                            // axios.post(`${ServerURI}/order/createOrder`, {...data, ...response})
+                            //     .then(res => {
+                            //         if (Object.keys(res.data).length) {
+                            //             router.push('/orders');
+                            //         }
+                            //     })
+                            //     .catch(err => console.log(err));
                         }
                     })
                     .catch(err => console.log(err));
@@ -169,7 +172,7 @@ const Checkout = props => {
     return (
         <>
             <section className="checkout">
-                <div className="page-title">Checkout</div>
+                <div className="page-title">{t('checkout')}</div>
 
                 <div className="container">
                    
@@ -178,13 +181,13 @@ const Checkout = props => {
 
                             <div className="address-list">
                                 <div className="header">
-                                    <label htmlFor="address">Use Saved address</label>
+                                    <label htmlFor="address">{t('use_saved_address')}</label>
                                     <input type="radio" name="a" id="address" onChange={() => setIsSavedAddress(true)} />
                                 </div>
                             </div>
                             <div className="new-address" style={{overflow: "hidden"}}>
                                 <div className="header">
-                                    <label htmlFor="addAddress">Add New Address</label>
+                                    <label htmlFor="addAddress">{t('add_new_address')}</label>
                                     <input type="radio" name="a" id="addAddress" onChange={() => setIsSavedAddress(false)} />
                                 </div>
                                 {
@@ -194,17 +197,17 @@ const Checkout = props => {
                                                 <AddressPanel type="address" register={register} />
                                                 <div className="check d-flex gap-1">
                                                     <input type="checkbox" id="checkbox" onChange={() => setIsChecked(!isChecked)} checked={isChecked} />
-                                                    <label htmlFor="checkbox">Payment and shipping address are the same</label>
+                                                    <label htmlFor="checkbox">{t('payment_and_shipping_address_are_the_same')}</label>
                                                 </div>
-                                                <button type='submit' className="save-address">Save Address</button>
+                                                <button type='submit' className="save-address">{t('save_address')}</button>
                                             </div>
                                             {
                                                 !isChecked &&
                                                     <div className="billing-address">
                                                         <div className="header">
-                                                            <label htmlFor="">Billing Address</label>
+                                                            <label htmlFor="">{t('billing_address')}</label>
                                                         </div>
-                                                        <div className="address-info" dir="rtl">
+                                                        <div className="address-info" dir={i18n.language === 'ar' ? "rtl" : "ltr"}>
                                                             <AddressPanel type="billingAddress" isChecked={isChecked} register={register} />
                                                         </div>
                                                     </div>
@@ -215,7 +218,7 @@ const Checkout = props => {
 
                         </div>
                         <div className="checkout_ordedrs">
-                            <div className="ordedrs-title fw-bold pb-1" style={{borderBottom: "2px solid"}}>Your Orders : </div>
+                            <div className="ordedrs-title fw-bold pb-1" style={{borderBottom: "2px solid"}}>{t('your_orders')} : </div>
                             <div className="ordedrs-list mt-3 gap-1 d-flex justify-content-between flex-column">
                                 {
                                     products.filter(item => Object.keys(item).length > 0).map((item, index) => (
@@ -224,10 +227,10 @@ const Checkout = props => {
                                                 <Images src={ServerURI + (item.images[0].link ? item.images[0].link : '/getfile?id=' + item.images[0])} width={100} height={100} alt="" />
                                             </div>
                                             <div className="order_price">
-                                                {item.extra_price} SAR
+                                                {item.extra_price} {t('sar')}
                                             </div>
                                             <div className="order_title">
-                                                {item.name_en}
+                                                {i18n.language === 'en' ? item.name_en : item.name_ar}
                                             </div>
                                         </div>
                                     ))
@@ -238,14 +241,14 @@ const Checkout = props => {
                      <div className="checkout-info" dir="auto">
                         
                         <div className="shipping-company">
-                            <div className="shipping-title fw-bold pb-1" style={{borderBottom: "2px solid"}}>Shipping By : </div>
+                            <div className="shipping-title fw-bold pb-1" style={{borderBottom: "2px solid"}}>{t('shipping_by')} : </div>
                             <div className="shipping-list mt-3 gap-3 d-flex justify-content-between flex-column">
                                 {
                                     getAllShipping.map((item, index) => (
                                         <div className="company d-flex gap-2 justify-content-between" key={index}>
                                             <div className="d-flex gap-2">
                                                 <input type="radio" name="1" id={"co_" + index} onClick={() => setShipping(item)} />
-                                                <label htmlFor={"co_" + index}>{item.company} <sub style={{padding: "0 5px"}}>{item.price} SAR</sub></label>
+                                                <label htmlFor={"co_" + index}>{item.company} <sub style={{padding: "0 5px"}}>{item.price} {t('sar')}</sub></label>
                                             </div>
                                             <div className="time">{item.time}</div>
                                         </div>
@@ -254,39 +257,39 @@ const Checkout = props => {
                             </div>
                         </div>
                         <div className="discount-code">
-                            <button onClick={checkOut.discount ? onRemoveDiscount : onApplyDiscount}>{checkOut.discount ? 'Remove' : 'Apply'}</button>
-                            <input type="text" placeholder="discount code" value={discount} onChange={e => setDiscount(e.target.value)} dir="auto" disabled={checkOut.discount} />
+                            <button onClick={checkOut.discount ? onRemoveDiscount : onApplyDiscount}>{checkOut.discount ? t('remove') : t('apply')}</button>
+                            <input type="text" placeholder={t('discount_code')} value={discount} onChange={e => setDiscount(e.target.value)} dir="auto" disabled={checkOut.discount} />
                         </div>
                         <div className="costs">
                             <div className="total-bag">
-                                <span>Total Shopping Bag :</span>
+                                <span>{t('total_shopping_bag')} :</span>
                                 <span className="amount">{checkOut.totalShoppingBag} SAR</span>
                             </div>
                             {
                                 checkOut.discount &&
                                     <div className="discount">
-                                        <span>Discount :</span>
+                                        <span>{t('discount')} :</span>
                                         <span className="amount">{checkOut.discount} SAR</span>
                                     </div>
                             }
                             {
                                 checkOut.shipping !== 0 &&
                                     <div className="shipping">
-                                        <span>Shipping :</span>
+                                        <span>{t('shipping')} :</span>
                                         <span className="amount">{checkOut.shipping} SAR</span>
                                     </div>
                             }
                             <div className="tax">
-                                <span>tax 15% :</span>
+                                <span>{t('tax')} 15% :</span>
                                 <span className="amount">{checkOut.tax15} SAR</span>
                             </div>
                             <div className="full-cost">
-                                <span>Full Total :</span>
+                                <span>{t('full_total')} :</span>
                                 <span className="amount">{checkOut.fullTotal} SAR</span>
                             </div>
                         </div>
                         <div className="payments" dir="auto">
-                            <div className="title">Payment Method</div>
+                            <div className="title">{t('payment_method')}</div>
                             <div id="card-element-credit" style={{display: cardType == 'card' ? 'block' : 'none'}}></div>
                             <Script src='js/initiateSessionCard.js' />
                             <div className="payment_methods d-flex">
@@ -303,7 +306,7 @@ const Checkout = props => {
                             </div>
                         </div>
                         <div className="continue">
-                            <button className="continue__btn" onClick={onCheckOut}>Checkout</button>
+                            <button className="continue__btn" onClick={onCheckOut}>{t('checkout')}</button>
                         </div>
                     </div>
                 </div>
