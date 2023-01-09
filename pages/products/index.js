@@ -176,7 +176,7 @@ const Products = props => {
                         }
                         <div className="price fw-bold">
                             <div className="price-title">{t('price')} :</div>
-                            <div className="the-price">{t('sar')} {currentProduct.extra_price}</div>
+                            <div className="the-price" dir="auto">{currentProduct.extra_price} {t('sar')} </div>
                         </div>
                         <div className="desc accordion" id="accordionExample">
                             <div className="accordion-item">
@@ -224,17 +224,40 @@ const Products = props => {
                             </ul>
                         </div>
                         <div className="btns">
-                            <button className="add-bag" onClick={onAddCart} disabled={currentProduct.quantity > 0 ? false : true}> {t('add_to_bag')}<i className="fa-solid fa-bag-shopping fa-1x pe-3 "></i></button>
-                            {
-                                isAuth && currentProduct.quantity > 0 ?
-                                    <Link href={{ pathname: '/checkout', query: { product: router.query.product, cart: false } }}><button className="buy-now">{t('buy_now')}</button></Link> :
-                                    (
-                                        currentProduct.quantity > 0 ?
-                                            <button className="buy-now" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{t('buy_now')}</button> :
-                                            <button className="buy-now" disabled>{t('buy_now')}</button>
-                                    )
-                            }
-                        </div>
+
+              {currentProduct.quantity > 0 ? (<button
+                className="add-bag"
+                onClick={onAddCart}
+                // disabled={currentProduct.quantity > 0 ? false : "true"}
+              >
+                {currentProduct.quantity > 0 ? t("add_to_bag") : "Out Of Stock"}
+                <i className="fa-solid fa-bag-shopping fa-1x pe-3 "></i>
+              </button>) : (
+              <div className="out_of_stock">
+                <h6>Out Of Stock</h6>
+              </div>)}
+
+              {isAuth && currentProduct.quantity > 0 ? (
+                <Link
+                  href={{
+                    pathname: "/checkout",
+                    query: { product: router.query.product, cart: false },
+                  }}
+                >
+                  <button className="buy-now">{t("buy_now")}</button>
+                </Link>
+              ) : currentProduct.quantity > 0 ? (
+                <button
+                  className="buy-now"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  {t("buy_now")}
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
                     </div>
                 </div>
             </section>
