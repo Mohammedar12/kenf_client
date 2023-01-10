@@ -48,7 +48,7 @@ const Mobile = props => {
                                     <h5 className="fw-bold"><Link href={{ pathname: '/group', query: { group: item.id } }}><a onClick={closeMenu}>{i18n.language === 'en' ? item.name_en : item.name_ar}</a></Link></h5>
                                     <div className="links d-flex gap-3 flex-column">
                                         {
-                                            categories.filter(item => !item.deleted).map((element, key) => (
+                                            categories.filter(item => !item.deleted && !item.isKenf).map((element, key) => (
                                                 <Link key={key} href={{ pathname: '/category', query: { category: element.id, group: item.id } }}><a onClick={closeMenu} >{i18n.language === 'en' ? element.name_en : element.name_ar}</a></Link>
                                             ))
                                         }
