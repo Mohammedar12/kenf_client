@@ -1,12 +1,15 @@
+import {useContext} from "react";
 import axios from "axios";
 import Images from "../image_panel";
 import { ServerURI } from "../../config";
 import { useTranslation } from "react-i18next";
 import i18n from "../../config/i18n";
+import { CartContext } from "../../components/cart_context";
 
 const ShoppingCard = props => {
     const { products, setProducts } = props;
     const { id, name_en, name_ar, ringSize, extra_price, images } = props.data;
+    const { cartCount, setCartCount } = useContext(CartContext);
     const { t } = useTranslation();
 
     const onDelCart = key => {
@@ -17,6 +20,7 @@ const ShoppingCard = props => {
 
         axios.post(`${ServerURI}/settings/delCart`, postData)
             .then(res => {
+                setCartCount(cartCount-1);
                 setProducts(products.filter(item => item.id != key));
             })
             .catch(err => console.log(err));
