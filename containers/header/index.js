@@ -56,15 +56,13 @@ const Header = () => {
             .then(res => setAllCategories(res.data))
             .catch(err => console.log(err));
 
-        if(isAuth){
-            axios.get(`${ServerURI}/settings/favorite?token=${sessionStorage.getItem("token")}`).then(res => {
-                console.log(res.data.cart);
-                if(res.data.cart){
-                    setCartCount(res.data.cart.length);
-                }
-            })
-            .catch(err => console.log(err));
-        }
+        axios.get(`${ServerURI}/settings/favorite?token=${sessionStorage.getItem("token")}`).then(res => {
+            console.log(res.data.cart);
+            if(res.data.cart){
+                setCartCount(res.data.cart.length);
+            }
+        })
+        .catch(err => console.log(err));
     }, []);
 
     const onSignIn = data => {
