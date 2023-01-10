@@ -4,10 +4,13 @@ import Images from "../image_panel";
 import { ServerURI } from "../../config";
 import { useTranslation } from "react-i18next";
 import i18n from "../../config/i18n";
+import { useContext } from "react";
+import { CartContext } from "../cart_context";
 
 const FavoriteCard = props => {
     const { favorite, setFavorite, cart, setCart, toast } = props;
     const { id, name_en, name_ar, extra_price, images } = props.data;
+    const { cartCount, setCartCount } = useContext(CartContext);
     const { t } = useTranslation();
 
     const onAddFavorite = () => {
@@ -18,6 +21,7 @@ const FavoriteCard = props => {
 
         axios.post(`${ServerURI}/settings/cart`, postData)
             .then(res => {
+                setCartCount(cartCount+1);
                 toast.success('Favorite product has been added on cart', {
                     position: "top-right",
                     autoClose: 3000,

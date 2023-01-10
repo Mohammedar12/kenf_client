@@ -103,6 +103,7 @@
     "add_address": "Add Address",
     "save": "Save",
     "continue_payment": "Continue Payment",
+    "resend": "Resend",
     "message.confirmcode_is_wrong": "Confirmcode code is wrong",
     "message.no_result": "No result",
     "message.address_added": "New address has been added",

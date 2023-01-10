@@ -103,6 +103,7 @@
     "add_address": "اضف عنوان",
     "save": "حفظ",
     "continue_payment": "اكمل الدفع",
+    "resend": "إعادة إرسال",
     "message.confirmcode_is_wrong": "الرقم المدخل خطأ",
     "message.no_result": "عذرا , لا يوجد نتائج",
     "message.address_added": "تم اضافة عنوان جديد",

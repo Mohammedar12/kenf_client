@@ -5,6 +5,7 @@ import Header from "../containers/header";
 import Footer from "../containers/footer";
 import Spinner from "../components/spinner";
 import { AuthProvider } from '../components/auth_context';
+import { CartProvider } from '../components/cart_context';
 import Script from 'next/script';
 
 import '../styles/css/bootstrap.min.css';
@@ -39,9 +40,11 @@ function MyApp({ Component, pageProps }) {
         {
           isLoad && isLoadPayment &&
             <AuthProvider>
-              { router.pathname != '/coupon' && <Header /> }
-              <Component {...pageProps} />
-              { router.pathname != '/coupon' && <Footer /> }
+              <CartProvider>
+                { router.pathname != '/coupon' && <Header /> }
+                <Component {...pageProps} />
+                { router.pathname != '/coupon' && <Footer /> }
+              </CartProvider>
             </AuthProvider>
         }
 

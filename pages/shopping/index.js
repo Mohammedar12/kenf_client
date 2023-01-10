@@ -3,12 +3,14 @@ import Link from 'next/link';
 import { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../../components/auth_context';
+import { CartContext } from '../../components/cart_context';
 import { ServerURI } from "../../config";
 import ShoppingCard from "../../components/shopping_card";
 import { useTranslation } from 'react-i18next';
 
 const Shopping = () => {
     const { isAuth } = useContext(AuthContext);
+    const { cartCount, setCartCount } = useContext(CartContext);
     const [state, setState] = useState({});
     const [products, setProducts] = useState([]);
     const { t } = useTranslation();

@@ -4,6 +4,7 @@ import PhoneInput from 'react-phone-input-2';
 import { ToastContainer, toast } from 'react-toastify';
 import Images from '../../components/image_panel';
 import { AuthContext } from '../../components/auth_context';
+import { CartContext } from '../../components/cart_context';
 import 'react-phone-input-2/lib/style.css';
 
 import Topbar from "../../components/topbar_panel";
@@ -30,9 +31,12 @@ const Header = () => {
     const [allGroups, setAllGroups] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
     const [allCategories, setAllCategories] = useState([]);
+    const [resetSeconds, setResetSeconds] = useState(0);
 
     const [type, setType] = useState(null);
     const { isAuth, setIsAuth } = useContext(AuthContext);
+
+    const { cartCount, setCartCount } = useContext(CartContext);
 
     const { t } = useTranslation();
 
@@ -51,6 +55,16 @@ const Header = () => {
         axios.get(`${ServerURI}/settings/items_category`)
             .then(res => setAllCategories(res.data))
             .catch(err => console.log(err));
+
+        if(isAuth){
+            axios.get(`${ServerURI}/settings/favorite?token=${sessionStorage.getItem("token")}`).then(res => {
+                console.log(res.data.cart);
+                if(res.data.cart){
+                    setCartCount(res.data.cart.length);
+                }
+            })
+            .catch(err => console.log(err));
+        }
     }, []);
 
     const onSignIn = data => {
@@ -76,6 +90,7 @@ const Header = () => {
         if (verifyCode === '0000') {
             axios.post(`${ServerURI}/emailverify`, { email: email.email }).then(res => {
                 if (res.data.status == '200') {
+                    setResetSeconds(30);
                     setVerifyCode(res.data.code); 
                 }
             });
@@ -93,10 +108,36 @@ const Header = () => {
             }
         }
     }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          if (resetSeconds > 0) {
+            setResetSeconds(resetSeconds - 1);
+          }
+      
+          if (resetSeconds === 0) {
+            clearInterval(interval);
+          }
+        }, 1000);
+      
+        return () => {
+          clearInterval(interval);
+        };
+      }, [resetSeconds]);
+
+    const resendEmailCode = () => {
+        axios.post(`${ServerURI}/emailverify`, { email: email.email }).then(res => {
+            if (res.data.status == '200') {
+                setResetSeconds(30);
+                setVerifyCode(res.data.code); 
+            }
+        });
+    }
       
     const showPhoneCode = () => {
         if (verifyCode === '0000') {
             axios.post(`${ServerURI}/phoneverify`, { phone: phone.phone }).then(res => {
+                setResetSeconds(30);
                 setVerifyCode(res.data.code); 
             });
         } else {
@@ -114,6 +155,13 @@ const Header = () => {
         }
     }
 
+    const resendPhoneCode = () => {
+        axios.post(`${ServerURI}/phoneverify`, { phone: phone.phone }).then(res => {
+            setResetSeconds(30);
+            setVerifyCode(res.data.code); 
+        });
+    }
+
     $("#staticBackdrop").on("hidden.bs.modal", function (e) {
         onInitialModal();
     });
@@ -121,7 +169,7 @@ const Header = () => {
     return (
         <>
             <nav className="nav">
-                <Topbar products={allProducts} />
+                <Topbar products={allProducts} cartCount={cartCount} />
                 <Mobile groups={allGroups} categories={allCategories} />
             </nav>
 
@@ -154,6 +202,15 @@ const Header = () => {
                                                 <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1" type="text" id="email" name="code" placeholder={t('enter_verification_code')} maxLength="4" style={{border: "1px solid #ccc"}} value={email.emailConfirmCode} onChange={e => setEmail({...email, emailConfirmCode: e.target.value})} required />
                                             </div>
 
+                                            <div className={"pe-4 ps-4 m-2 " + (verifyCode == "0000" ? "d-none" : "show-this-flex")} dir="rtl">
+                                               {
+                                                resetSeconds == 0 ?
+                                                <input type="button" className="btn w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value={t('resend')} onClick={resendEmailCode} />
+                                                :
+                                                <p>Resend in {new Date(resetSeconds * 1000).toISOString().substring(14, 19)}</p>
+                                               }
+                                            </div>
+
                                             <div className="submit w-100  text-center pe-4 ps-4">
                                                 <input type="button" className="btn w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value={t('go')} onClick={showEmailCode} />
                                             </div>
@@ -180,6 +237,15 @@ const Header = () => {
                                                         {/* { phone.phoneConfirmCode != verifyCode && phone.phoneConfirmCode.length == 4 && <p className='form_error'>Confirm code is wrong</p> } */}
                                                     </div>
                                             }
+
+                                            <div className={"pe-4 ps-4 m-2 " + (verifyCode == "0000" ? "d-none" : "show-this-flex")} dir="rtl">
+                                               {
+                                                resetSeconds == 0 ?
+                                                <input type="button" className="btn w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value={t('resend')} onClick={resendPhoneCode} />
+                                                :
+                                                <p>Resend in {new Date(resetSeconds * 1000).toISOString().substring(14, 19)}</p>
+                                               }
+                                            </div>
 
                                             <div className="submit w-100  text-center pe-4 ps-4">
                                                 <input type="button" className="btn  w-100 shadow-none text-light mt-2" style={{backgroundColor: "var(--main-color)"}} value={t('go')} onClick={showPhoneCode} required />

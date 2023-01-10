@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../components/auth_context";
+import { CartContext } from "../../components/cart_context";
 import { ProductCarousel } from "../../_service";
 import ProductCard from "../../components/product_card";
 import Images from "../../components/image_panel";
@@ -14,6 +15,7 @@ const Products = props => {
     const router = useRouter();
     const { getAllProducts, getAllSizes } = props;
     const { isAuth } = useContext(AuthContext);
+    const { cartCount, setCartCount } = useContext(CartContext);
     const [cart, setCart] = useState([]);
     const [profile, setProfile] = useState();
     const [currentProduct, setCurrentProduct] = useState(getAllProducts.filter(item => item.id == router.query.product)[0]);
@@ -58,7 +60,7 @@ const Products = props => {
                 token: sessionStorage.getItem("token"),
                 product: [...cart.filter(item => item.id != router.query.product).map(item => item.id), router.query.product]
             }
-    
+            setCartCount(cartCount+(postData.product.length));
             axios.post(`${ServerURI}/settings/cart`, postData)
                 .then(res => {
                     router.push('/shopping');
