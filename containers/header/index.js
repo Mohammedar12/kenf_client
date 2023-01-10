@@ -98,7 +98,7 @@ const Header = () => {
         if (verifyCode === '0000') {
             axios.post(`${ServerURI}/emailverify`, { email: email.email }).then(res => {
                 if (res.data.status == '200') {
-                    setResetSeconds(30);
+                    setResetSeconds(15);
                     setVerifyCode(res.data.code); 
                 }
             });
@@ -136,7 +136,7 @@ const Header = () => {
     const resendEmailCode = () => {
         axios.post(`${ServerURI}/emailverify`, { email: email.email }).then(res => {
             if (res.data.status == '200') {
-                setResetSeconds(30);
+                setResetSeconds(15);
                 setVerifyCode(res.data.code); 
             }
         });
@@ -145,7 +145,7 @@ const Header = () => {
     const showPhoneCode = () => {
         if (verifyCode === '0000') {
             axios.post(`${ServerURI}/phoneverify`, { phone: phone.phone }).then(res => {
-                setResetSeconds(30);
+                setResetSeconds(15);
                 setVerifyCode(res.data.code); 
             });
         } else {
@@ -165,7 +165,7 @@ const Header = () => {
 
     const resendPhoneCode = () => {
         axios.post(`${ServerURI}/phoneverify`, { phone: phone.phone }).then(res => {
-            setResetSeconds(30);
+            setResetSeconds(15);
             setVerifyCode(res.data.code); 
         });
     }
