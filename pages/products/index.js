@@ -74,6 +74,7 @@ const Products = props => {
         } else {
             axios.post(`${ServerURI}/settings/encodeCart`, { addedCart: getAllProducts.filter(item => item.id == router.query.product), savedCart: sessionStorage.getItem('cart') })
                 .then(res => {
+                    setCartCount(cartCount+1);
                     sessionStorage.setItem('cart', res.data);
                     router.push('/shopping')
                 })
