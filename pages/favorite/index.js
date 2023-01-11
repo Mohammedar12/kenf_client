@@ -32,6 +32,7 @@ const Favorite = () => {
 
         axios.post(`${ServerURI}/settings/cart`, postData)
             .then(res => {
+                setCartCount(cartCount+(postData.product.length));
                 toast.success('All favorite products have been added on cart', {
                     position: "top-right",
                     autoClose: 3000,

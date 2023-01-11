@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 
 const Topbar = props => {
     const router = useRouter();
-    const { products , handleShow } = props;
+    const { products, cartCount , handleShow } = props;
     const { isAuth, setIsAuth, mobileTopbar, setMobileTopbar } = useContext(AuthContext);
     const [keyword, setKeyword] = useState('');
     const [isShow, setIsShow] = useState(false);
@@ -60,10 +60,18 @@ const Topbar = props => {
                             <div className="left-content col-md-5 col-4 animate__animated animate__fadeIn">
                                 <div className="left-content_container">
 
-                                    <div className="bag-icon">
-                                        <Link href="/shopping"><a>
-                                            <i className="fa-solid fa-bag-shopping fa-1x p-md-2 p-sm-1"></i>
-                                        </a></Link>
+                                    <div className="bag-icon" style={{ position: 'relative' }}>
+                                        <Link href="/shopping">
+                                            <a>
+                                                <i className="fa-solid fa-bag-shopping fa-1x p-md-2 p-sm-1"></i>
+                                                {
+                                                    cartCount && cartCount != 0 ?
+                                                    <div className='px-1 text-white' style={{ position: 'absolute', background: 'red', top: -7, left: '75%', borderRadius: 5, fontSize: '0.55rem' }}>{cartCount}</div>
+                                                    :
+                                                    <></>
+                                                }
+                                            </a>
+                                        </Link>
                                     </div>
 
                                     <div className="favorite-icon">

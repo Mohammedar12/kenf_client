@@ -10,7 +10,11 @@
     core-js-pure "^3.25.1"
     regenerator-runtime "^0.13.4"
 
+<<<<<<< HEAD
 "@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.16.3", "@babel/runtime@^7.17.2", "@babel/runtime@^7.18.3", "@babel/runtime@^7.18.9", "@babel/runtime@^7.19.4", "@babel/runtime@^7.20.6", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.7":
+=======
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.5", "@babel/runtime@^7.16.3", "@babel/runtime@^7.18.9", "@babel/runtime@^7.19.4", "@babel/runtime@^7.20.6":
+>>>>>>> a24203a0a84ac1dcc2422528fe918b7578489329
   version "7.20.7"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.20.7.tgz"
   integrity sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==
@@ -1218,10 +1222,17 @@ i18next-http-backend@^2.1.1:
   dependencies:
     cross-fetch "3.1.5"
 
+<<<<<<< HEAD
 i18next@^22.4.6, "i18next@>= 19.0.0":
   version "22.4.9"
   resolved "https://registry.npmjs.org/i18next/-/i18next-22.4.9.tgz"
   integrity sha512-8gWMmUz460KJDQp/ob3MNUX84cVuDRY9PLFPnV8d+Qezz/6dkjxwOaH70xjrCNDO+JrUL25iXfAIN9wUkInNZw==
+=======
+i18next@^22.4.6:
+  version "22.4.8"
+  resolved "https://registry.npmjs.org/i18next/-/i18next-22.4.8.tgz"
+  integrity sha512-XSOy17ZWqflOiJRYE/dzv6vDle2Se32dnHREHb93UnZzZ1+UnvQ8yKtt1fpNL3zvXz5AwCqqixrtTVZmRetaiQ==
+>>>>>>> a24203a0a84ac1dcc2422528fe918b7578489329
   dependencies:
     "@babel/runtime" "^7.20.6"
 
@@ -1381,7 +1392,11 @@ jose@^4.10.0, jose@^4.9.3:
   resolved "https://registry.npmjs.org/jose/-/jose-4.10.0.tgz"
   integrity sha512-KEhB/eLGLomWGPTb+/RNbYsTjIyx03JmbqAyIyiXBuNSa7CmNrJd5ysFhblayzs/e/vbOPMUaLnjHUMhGp4yLw==
 
+<<<<<<< HEAD
 jquery@^3.6.3, jquery@>=1.8.3:
+=======
+jquery@>=1.8.3, jquery@^3.6.3:
+>>>>>>> a24203a0a84ac1dcc2422528fe918b7578489329
   version "3.6.3"
   resolved "https://registry.npmjs.org/jquery/-/jquery-3.6.3.tgz"
   integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
@@ -1981,9 +1996,15 @@ react-hook-form@^7.37.0:
   integrity sha512-6NFTxsnw+EXSpNNvLr5nFMjPdYKRryQcelTHg7zwBB6vAzfPIcZq4AExP4heVlwdzntepQgwiOQW4z7Mr99Lsg==
 
 react-i18next@^12.1.1:
+<<<<<<< HEAD
   version "12.1.4"
   resolved "https://registry.npmjs.org/react-i18next/-/react-i18next-12.1.4.tgz"
   integrity sha512-XQND7jYtgM7ht5PH3yIZljCRpAMTlH/zmngM9ZjToqa+0BR6xuu8c7QF0WIIOEjcMTB2S3iOfpN/xG/ZrAnO6g==
+=======
+  version "12.1.1"
+  resolved "https://registry.npmjs.org/react-i18next/-/react-i18next-12.1.1.tgz"
+  integrity sha512-mFdieOI0LDy84q3JuZU6Aou1DoWW2fhapcTGeBS8+vWSJuViuoCLQAMYSb0QoHhXS8B0WKUOPpx4cffAP7r/aA==
+>>>>>>> a24203a0a84ac1dcc2422528fe918b7578489329
   dependencies:
     "@babel/runtime" "^7.20.6"
     html-parse-stringify "^3.0.1"
@@ -2063,6 +2084,7 @@ react@^16.0.0:
   dependencies:
     loose-envify "^1.1.0"
 
+<<<<<<< HEAD
 react@^16.13.1, react@^16.14.0, react@16.14.0:
   version "16.14.0"
   resolved "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
@@ -2077,6 +2099,13 @@ regenerator-runtime@^0.13.11, regenerator-runtime@^0.13.4:
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz"
   integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
+=======
+regenerator-runtime@^0.13.11, regenerator-runtime@^0.13.4:
+  version "0.13.11"
+  resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz"
+  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
+
+>>>>>>> a24203a0a84ac1dcc2422528fe918b7578489329
 regexp.prototype.flags@^1.4.1, regexp.prototype.flags@^1.4.3:
   version "1.4.3"
   resolved "https://registry.npmjs.org/regexp.prototype.flags/-/regexp.prototype.flags-1.4.3.tgz"

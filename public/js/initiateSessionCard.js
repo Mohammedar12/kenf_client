@@ -2,7 +2,6 @@ var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             const res = JSON.parse(this.responseText);
-
             var config = {
                 countryCode: res.Data.CountryCode, // Here, add your Country Code.
                 sessionId: res.Data.SessionId, // Here you add the "SessionId" you receive from InitiateSession Endpoint.

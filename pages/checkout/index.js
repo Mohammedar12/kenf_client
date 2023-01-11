@@ -136,31 +136,16 @@ const Checkout = props => {
     }
 
     const onCheckOut = async () => {
-        
-        var access_token = '';
-        
-        // Get access_token using refresh_token
-        // await axios.get(`${ServerURI}/order/refreshToken`)
-        //     .then(res => access_token = res.data.access_token)
-        //     .catch(err => console.log(err));
 
         var data = { session: sessionStorage.getItem('token'), cartType: router.query.cart, ...profile, ...checkOut, productList: products, shippingId: shipping.id };
-
-        await myFatoorah.submit()
+        console.log(myFatoorah);
+        myFatoorah.submit()
             .then(function (response) {
                 // Create order using node server
                 axios.post(`${ServerURI}/order/executePayment`, {...data, ...response})
                     .then(res => {
                         if (res.data.IsSuccess) {
                             window.open(res.data.Data.PaymentURL,"_self");
-
-                            // axios.post(`${ServerURI}/order/createOrder`, {...data, ...response})
-                            //     .then(res => {
-                            //         if (Object.keys(res.data).length) {
-                            //             router.push('/orders');
-                            //         }
-                            //     })
-                            //     .catch(err => console.log(err));
                         }
                     })
                     .catch(err => console.log(err));
