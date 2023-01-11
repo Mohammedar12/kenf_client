@@ -19,15 +19,17 @@ const Category = props => {
     const { t } = useTranslation();
 
     useEffect(() => {
+        console.log("sdf");
+        console.log(router.query);
         if (router.query.category) {
             if (router.query.group) 
-                setAllProducts(elements => [...elements.filter(item => item.group_id.id == router.query.group && (item.category_id.id == router.query.category || item.kenf_id == router.query.category))])
+                setAllProducts(elements => [...getAllProducts.filter(item => item.group_id.id == router.query.group && (item.category_id.id == router.query.category || item.kenf_id == router.query.category))])
             else
-                setAllProducts(elements => [...elements.filter(item => item.category_id.id == router.query.category || item.kenf_id == router.query.category)])
+                setAllProducts(elements => [...getAllProducts.filter(item => item.category_id.id == router.query.category || item.kenf_id == router.query.category)])
         } else {
-            setAllProducts(elements => [...elements.filter(item => item.group_id.id == router.query.group)])
+            setAllProducts(elements => [...getAllProducts.filter(item => item.group_id.id == router.query.group)])
         }
-    }, [router.query]);
+    }, [window.location.search]);
 
     useEffect(() => {
         if (sortType == 1) {

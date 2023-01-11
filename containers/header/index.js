@@ -144,8 +144,24 @@ const Header = () => {
     const showPhoneCode = () => {
         if (verifyCode === '0000') {
             axios.post(`${ServerURI}/phoneverify`, { phone: phone.phone }).then(res => {
+                let ac = new AbortController();
+                setTimeout(() => {
+                    ac.abort();
+                }, 10 * 60 * 1000);
+                navigator.credentials
+                .get({
+                    otp: { transport: ["sms"] },
+                    signal: ac.signal
+                })
+                .then(otp => {
+                    console.log("your otp code is", otp.code);
+                    setPhone({...phone, phoneConfirmCode: otp.code});
+                })
+                .catch(err => {
+                    console.log(err);
+                });
                 setResetSeconds(15);
-                setVerifyCode(res.data.code); 
+                setVerifyCode(res.data.code);
             });
         } else {
             if (verifyCode == phone.phoneConfirmCode) {
