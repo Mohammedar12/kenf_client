@@ -251,7 +251,7 @@ const Header = () => {
                                                 <label htmlFor="">* {t('phone')}</label>
                                                 <PhoneInput width="100%" className="mt-1" country={'sa'} value={phone.phone} onChange={e => setPhone({...phone, phone: e})} onlyCountries={['sa', 'eg', 'dz', 'bh', 'kw', 'in']} />
                                             </div>
-                                            <div className={"verification-phone d-flex flex-column align-items-end pe-3 ps-3 m-2 position-relative show-this-flex "+ (verifyCode == "0000" ? "d-none" : "show-this-flex")}>
+                                            <div className={"verification-phone d-flex flex-column align-items-end pe-3 ps-3 m-2 position-relative "+ (verifyCode == "0000" ? "d-none" : "show-this-flex")}>
                                                 <label htmlFor="phone">* {t('verification_code')}</label>
                                                 <input dir="rtl" className="w-100 ps-5 pe-2 p-1 mt-1" type="text" id="phone" name="code" placeholder={t('enter_verification_code')} maxLength="4" style={{border: "1px solid #ccc"}} value={phone.phoneConfirmCode} onChange={e => setPhone({...phone, phoneConfirmCode: e.target.value})} required />
                                                 {/* { phone.phoneConfirmCode != verifyCode && phone.phoneConfirmCode.length == 4 && <p className='form_error'>Confirm code is wrong</p> } */}
