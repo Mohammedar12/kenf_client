@@ -305,7 +305,10 @@ input {
 
 .login-modal .modal-dialog {
   max-width: 400px !important;
-  margin: 5.5rem auto !important;
+}
+
+.login-modal .modal-header {
+  justify-content: center !important;
 }
 
 .login-modal .hide-this {

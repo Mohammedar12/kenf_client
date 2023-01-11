@@ -5,14 +5,18 @@ import { AuthContext } from '../auth_context';
 import Images from '../image_panel';
 import "animate.css"
 import i18n from '../../config/i18n';
+import {Button} from 'react-bootstrap'
 import { useTranslation } from "react-i18next";
 
 const Topbar = props => {
     const router = useRouter();
-    const { products } = props;
+    const { products , handleShow } = props;
     const { isAuth, setIsAuth, mobileTopbar, setMobileTopbar } = useContext(AuthContext);
     const [keyword, setKeyword] = useState('');
     const [isShow, setIsShow] = useState(false);
+
+    
+    
 
     const { t } = useTranslation();
 
@@ -78,7 +82,7 @@ const Topbar = props => {
                                                         <li><Link href='/orders'><a>{t('my_orders')}</a></Link></li>
                                                         <li><Link href='/'><a onClick={onLogout}>{t('logout')}</a></Link></li>
                                                     </> :
-                                                    <li><button type="button" className="btn shadow-none p-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{t('login')}</button></li>
+                                                    <li><Button variant='Light' type="button" className="bg-Light shadow-none p-0" onClick={handleShow}>{t('login')}</Button></li>
                                             }
                                         </ul>
                                     </div>
