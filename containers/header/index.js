@@ -249,7 +249,7 @@ const Header = () => {
                                             <div
                                                 className="phone-input d-flex flex-column align-items-end pe-3 ps-3  m-2 position-relative">
                                                 <label htmlFor="">* {t('phone')}</label>
-                                                <PhoneInput width="100%" className="mt-1" country={'sa'} value={phone.phone} onChange={e => setPhone({...phone, phone: e})} onlyCountries={['sa', 'eg', 'dz', 'bh', 'kw']} />
+                                                <PhoneInput width="100%" className="mt-1" country={'sa'} value={phone.phone} onChange={e => setPhone({...phone, phone: e})} onlyCountries={['sa', 'eg', 'dz', 'bh', 'kw', 'in']} />
                                             </div>
                                             <div className={"verification-phone d-flex flex-column align-items-end pe-3 ps-3 m-2 position-relative show-this-flex "+ (verifyCode == "0000" ? "d-none" : "show-this-flex")}>
                                                 <label htmlFor="phone">* {t('verification_code')}</label>
