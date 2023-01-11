@@ -62,7 +62,7 @@ const Topbar = props => {
                                                 <i className="fa-solid fa-bag-shopping fa-1x p-md-2 p-sm-1"></i>
                                                 {
                                                     cartCount && cartCount != 0 ?
-                                                    <div className='px-1 text-white' style={{ position: 'absolute', background: 'red', top: -7, left: 18, borderRadius: 5, fontSize: '0.8rem' }}>{cartCount}</div>
+                                                    <div className='px-1 text-white' style={{ position: 'absolute', background: 'red', top: -7, left: '75%', borderRadius: 5, fontSize: '0.8rem' }}>{cartCount}</div>
                                                     :
                                                     <></>
                                                 }

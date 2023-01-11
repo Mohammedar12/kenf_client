@@ -81,7 +81,6 @@ const Header = () => {
                 sessionStorage.setItem("token", res.data);
             })
             .catch(err => console.log(err));
-
         $("#staticBackdrop").modal('hide');
         setIsAuth(true);
         onInitialModal();
