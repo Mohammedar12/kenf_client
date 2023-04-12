@@ -74,7 +74,7 @@ export default function PaymentStatus(props){
 }
 
 export async function getServerSideProps({ req, locale, res, query }) {
-    if(query.paymentId || query.paymentId.trim() === ''){
+    if(!query.paymentId || query.paymentId.trim() === ''){
         return {
             notFound: true
         };
