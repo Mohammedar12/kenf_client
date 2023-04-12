@@ -36,7 +36,7 @@ const ShoppingCard = props => {
                 <div className="price">{extra_price} {t('sar')}</div>
                 <div className="option">
                     <div className="size">
-                        size : <span>{ringSize}</span>
+                        size : <span>{ringSize ? ( i18n.language === 'en' ? ringSize.name_en : ringSize.name_ar ) : ''}</span>
                     </div>
                     
                 </div>
