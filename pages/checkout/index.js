@@ -274,8 +274,8 @@ export default function Checkout(props){
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="/images/SVG/logo-3.svg" />
             </Head>
-            <script src="https://sa.myfatoorah.com/cardview/v2/session.js" defer/>
-            <script src="https://sa.myfatoorah.com/applepay/v2/applepay.js" defer/>
+            <script src="https://sa.myfatoorah.com/cardview/v2/session.js" />
+            <script src="https://sa.myfatoorah.com/applepay/v2/applepay.js "/>
             <main>
                 <section className="checkout">
                     <div className="page-title">{t('checkout')}</div>
