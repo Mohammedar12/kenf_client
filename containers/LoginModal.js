@@ -112,7 +112,7 @@ const LoginModal = (props) => {
         let url = '';
         let data = {};
         if(loginType === 'phone'){
-            url = '/auth/phone/sendOtp';
+            url = '/auth/mobile/sendOtp';
             data = {
                 phone: selectedPhoneCountry + phone,
             };
