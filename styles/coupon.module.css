@@ -1,0 +1,48 @@
+.coupon_section{
+    padding: 2rem;
+    width: 100%;
+    background-color: #fbf9f9;
+}
+.coupon_section h2{
+     margin-left: auto;
+     margin-right: auto;
+     text-align: center;
+}
+.coupons_list{
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    margin-left: auto;
+     margin-right: auto;
+}
+.coupons_list_item{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: var(--main-shadow);
+    padding: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+}
+.coupons_list_item > div {
+    display: flex;
+    justify-content: space-between;
+}
+.coupons_list_item > div > p{
+    flex: 1;
+}
+.viewBtn{
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+.stats_modal{
+    
+}

@@ -1,0 +1,40 @@
+.info_expandable_btn{
+    background: transparent;
+    border: none;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    width: 100%;
+    text-align: unset !important;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+.info_expandable_btn:active {
+    border: 2px solid cornflowerblue;
+}
+.info_accordion_item{
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+}
+.product_viewer_slider{
+    display: flex;
+    max-width: 50vw;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+.product_viewer_img_container{
+    position: relative;
+}
+.product_viewer_img{
+    position: unset !important;
+}
+.product_slider{
+    display: flex;
+    margin-left: 2rem !important;
+    margin-right: 2rem !important;
+    overflow: hidden !important;
+    width: calc(100%-4rem);
+    margin-top: 2rem;
+}
