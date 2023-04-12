@@ -29,6 +29,8 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script src="https://sa.myfatoorah.com/cardview/v2/session.js" defer/>
+        <script src="https://sa.myfatoorah.com/applepay/v2/applepay.js" defer/> 
       </Html>
     )
   };

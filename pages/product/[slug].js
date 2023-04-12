@@ -352,7 +352,7 @@ export default function Product(props) {
               </div>
               <BuyButton onyDesktop={true} outofStock={product.outofStock} loading={loadingAddToCart} onAddToCart={()=>{onAddToCart();}} products={JSON.stringify([product.id])} isCart={false}/>
             </div>
-            {scrollTop < 900 && <BuyButton onlyMobile={true} outofStock={product.outofStock} loading={loadingAddToCart} onAddToCart={()=>{onAddToCart();}}/>}
+            {scrollTop < 900 && <BuyButton onlyMobile={true} outofStock={product.outofStock} loading={loadingAddToCart} onAddToCart={()=>{onAddToCart();}} products={JSON.stringify([product.id])} isCart={false}/>}
           </div>
         </section>
         <div className="section-title my-3">{t("suggested_products")}</div>
