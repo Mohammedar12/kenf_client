@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import axios from '../../utils/auth_axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import thankyouStyle from '../../styles/thank_you.module.css';
 
 export default function PaymentStatus(props){
