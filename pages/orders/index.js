@@ -33,7 +33,7 @@ export default function Order(props){
                             <div key={"order_"+item._id} className="order" dir="auto">
                                 <div className="order__number">
                                     {t('order_details_number')}
-                                    <span>#{item._id}</span>
+                                    <span>#{item.paymentInfo.invoiceId}</span>
                                 </div>
                                 <div className="order__details">
                                     <div className="order__info">
