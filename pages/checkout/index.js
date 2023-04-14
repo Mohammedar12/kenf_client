@@ -208,8 +208,8 @@ export default function Checkout(props){
     useEffect(()=>{
         if(window.ApplePaySession && checkOut.fullTotal !== prevCheckOut.fullTotal){
             let applePayConfig = {
-                countryCode: initResponse.current.Data.CountryCode,
-                sessionId: initResponse.current.Data.SessionId,
+                countryCode: paymentSession.data.CountryCode,
+                sessionId: paymentSession.data.SessionId,
                 currencyCode: "SAR",
                 amount: checkOut.fullTotal,
                 cardViewId: "card-element-credit-apple",
