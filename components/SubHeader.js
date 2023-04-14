@@ -67,7 +67,7 @@ const SubHeader = props => {
                                             </Link>
                                         {
                                             categories.map((category,cat_index)=>(
-                                                <Link aria-label={i18n.language === 'en' ? category.name_en : category.name_ar} className={styles.mobile_menu_link} key={"mobile_cat_links_"+cat_index} href={'/category/'+group.id+'/'+category.id}>
+                                                <Link aria-label={i18n.language === 'en' ? category.name_en : category.name_ar} className={styles.mobile_menu_link} key={"mobile_cat_links_"+cat_index} href={'/category/'+category.id+'/'+group.id}>
                                                     {i18n.language === 'en' ? category.name_en : category.name_ar}
                                                 </Link>
                                             ))
