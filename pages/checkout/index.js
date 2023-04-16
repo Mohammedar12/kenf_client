@@ -72,7 +72,7 @@ export default function Checkout(props){
         });
     },[products,shipping,coupon]);
 
-    const couponApply = async(data) => {
+    const couponApply = async() => {
         setCouponLoading(true);
         try{
             let couponResponse = await axios.get('/settings/coupon',{
@@ -113,7 +113,7 @@ export default function Checkout(props){
         setCoupon();
     };
 
-    const saveAddress = () =>{
+    const saveAddress = (data) =>{
         setAddressLoading(true);
         let body= {};
         body.address = {
