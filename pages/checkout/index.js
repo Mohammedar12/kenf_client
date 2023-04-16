@@ -72,7 +72,7 @@ export default function Checkout(props){
         });
     },[products,shipping,coupon]);
 
-    const couponApply = async() => {
+    const couponApply = async(data) => {
         setCouponLoading(true);
         try{
             let couponResponse = await axios.get('/settings/coupon',{

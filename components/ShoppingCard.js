@@ -41,7 +41,7 @@ const ShoppingCard = props => {
                     
                 </div>
             </div>
-            <div className="delete">
+            <div className="delete" style={{ left: 'unset !important' }}>
                 {
                     deleteLoading ? 
                     <div className="spinner" style={{ height: 20, width: 20, borderTopColor: 'white'}}></div>
