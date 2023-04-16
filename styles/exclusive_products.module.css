@@ -1,0 +1,29 @@
+.section{
+    padding-top: 0.25rem;
+    padding-bottom: 3rem;
+    position: relative;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+.section_title{
+    font-weight: 800;
+    color: var(--main-color);
+    font-size: 22px;
+    text-align: center;
+}
+.slider{
+    margin-top: 2rem;
+}
+@media (max-width: 768px){
+    .section{
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media (max-width: 395px){
+    .section-title {
+        font-size: 1.1rem;
+    }
+}
