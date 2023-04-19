@@ -30,7 +30,7 @@ export default function Order(props){
                 <div className="container">
                     {
                         orders.map((item, index) => (
-                            <div key={"order_"+item._id} className="order" dir="auto">
+                            <div key={"order_"+item.id} className="order" dir="auto">
                                 <div className="order__number">
                                     {t('order_details_number')}
                                     <span>#{item.paymentInfo.invoiceId}</span>
