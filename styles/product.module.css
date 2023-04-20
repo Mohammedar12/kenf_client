@@ -18,7 +18,7 @@
 }
 .product_viewer_slider{
     display: flex;
-    max-width: 50vw;
+    width: clamp(800px , 100% , 300px);
     height: fit-content;
     margin-left: auto;
     margin-right: auto;

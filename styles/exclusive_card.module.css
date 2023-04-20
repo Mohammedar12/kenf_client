@@ -33,7 +33,7 @@
     overflow:hidden;
 }
 .info{
-    margin-top: -10px;
+    margin-top: -2px;
     text-align: center;
     background-color: var(--sec-color-50);
     width: 100%;
@@ -48,6 +48,7 @@
 }
 .product_title{
     font-size: 16px;
+    font-weight: 700;
 }
 @media (max-width: 650px){
     .container{
@@ -71,5 +72,10 @@
         -moz-border-radius: 0 0 15px 15px !important;
         -ms-border-radius: 0 0 15px 15px !important;
         -o-border-radius: 0 0 15px 15px !important;
+    }
+}
+@media (max-width: 650px) {
+    .product_title{
+        font-size: 14px;
     }
 }
