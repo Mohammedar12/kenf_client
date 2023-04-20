@@ -113,7 +113,7 @@ export default function Checkout(props){
         setCoupon();
     };
 
-    const saveAddress = (data) =>{
+    const saveAddress = data =>{
         setAddressLoading(true);
         let body= {};
         body.address = {
@@ -298,7 +298,7 @@ export default function Checkout(props){
                                         !isSavedAddress &&
                                             <form onSubmit={handleSubmit(saveAddress)}>
                                                 <div className="address-info" dir="auto">
-                                                    <AddressPanel errors={errors} type="address" register={()=>{}} />
+                                                    <AddressPanel errors={errors} type="address" register={register} isChecked={isChecked} clearErrors={clearErrors}/>
                                                     <div className="check d-flex gap-1">
                                                         <input type="checkbox" id="checkbox" onChange={() => setIsChecked(!isChecked)} checked={isChecked} />
                                                         <label htmlFor="checkbox">{t('payment_and_shipping_address_are_the_same')}</label>
@@ -317,7 +317,7 @@ export default function Checkout(props){
                                                                 <label htmlFor="">{t('billing_address')}</label>
                                                             </div>
                                                             <div className="address-info" dir={i18n.language === 'ar' ? "rtl" : "ltr"}>
-                                                                <AddressPanel errors={errors} type="billingAddress" isChecked={isChecked} register={register} />
+                                                                <AddressPanel errors={errors} type="billingAddress" isChecked={isChecked} clearErrors={clearErrors} register={register} />
                                                             </div>
                                                         </div>
                                                 }
