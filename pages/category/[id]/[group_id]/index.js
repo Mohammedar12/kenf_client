@@ -12,6 +12,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { imageURI } from '../../../../config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import dynamic from 'next/dynamic';
+const BuyButton = dynamic(() => import('@/components/BuyButton'), {
+  loading: () => <p>Loading...</p>,
+  ssr: false
+});
 
 export default function Category({ category, groups, purities, group  }) {
   
@@ -22,11 +29,38 @@ export default function Category({ category, groups, purities, group  }) {
   const [purity, setPurity] = useState([]);
   const [filterGroups, setFilterGroups] = useState([group_id]);
   const [sortType, setSortType] = useState();
+  const [loadingAddToCart, setLoadingAddToCart] = useState(false);
   const [filterType, setFilterType] = useState([
     { name: "metal", filter: [group_id] },
     { name: "purity", filter: [] },
     { name: "color", filter: [] }
   ]);
+
+  const onAddToCart = async(productId)=>{
+    try{
+      setLoadingAddToCart(true);
+      const addToCartResponse = await axios.post('/user/cart',{ products: [{ id: productId, quantity: 1 }] });
+      router.push("/shopping");
+      setLoadingAddToCart(false);
+    }
+    catch(err){
+      if(err.response?.data){
+        toast.error(err.response.data.message, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+        });
+      }
+      else {
+        toast.error(err.message, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+        });
+      }
+      setLoadingAddToCart(false);
+    }
+  };
 
   return (
     <>
@@ -67,25 +101,7 @@ export default function Category({ category, groups, purities, group  }) {
                         ? category.heroProduct.description_en
                         : category.heroProduct.description_ar}
                     </div>
-                    <div className="btns">
-                        { true ? (
-                            <>
-                                <button className="buy-now" onClick={()=>{}}>
-                                    {t("buy_now")}
-                                    </button>
-                                <button
-                                    className="add-bag"
-                                    onClick={() => {
-                                      //onAddCart();
-                                    }}>
-                                    {t("add_to_bag")}
-                                </button>
-                            </>
-                        )
-                        :
-                        <></>
-                        }
-                    </div>
+                    <BuyButton outofStock={category.heroProduct.outofStock} loading={loadingAddToCart} onAddToCart={()=>{onAddToCart(category.heroProduct.id);}} products={JSON.stringify([category.heroProduct.id])} isCart={false}/>
                 </div>
                 </div>
             </div>
