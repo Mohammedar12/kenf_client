@@ -19,7 +19,7 @@ const ExclusiveCard = props => {
     return (
         <div className={`${styles.card_container} ${props.isActive ? styles.card_container_active : ''} keen-slider__slide`}>
             <Link aria-label={i18n.language === 'en' ? name_en : name_ar} href={`product/${encodeURIComponent(id)}`} className={`${styles.card} ${props.isActive ? styles.card_active : ''}`}>
-                <Image loading="eager" className={`${styles.card_image}`} quality={50} fill src={imageURI + imageLink} alt={i18n.language === 'en' ? name_en : name_ar} sizes='(max-width: 750px) 40vw, 300px'/>
+                <Image loading="eager" className={`${styles.card_image}`} quality={50} fill src={imageURI + imageLink} alt={i18n.language === 'en' ? name_en : name_ar} sizes='(max-width: 750px) 70vw, 600px'/>
                 <div className={styles.info}>
                     <h4 className={styles.product_title} suppressHydrationWarning>{i18n.language === 'en' ? name_en : name_ar}</h4>
                 </div>

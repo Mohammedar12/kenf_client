@@ -49,13 +49,14 @@ export default async function handler(req, res) {
     let emailResponse;
     try{
       emailResponse = await emailjs.send("service_xfsmxkc","template_cw5z08o",templateParams,{
-        publicKey: "CyUHYY4O7Y4REotp2"
+        publicKey: "CyUHYY4O7Y4REotp2",
+        privateKey: "l5gw_9ASw5IyG3CgeSDjJ"
       });
-      res.status(200).json({ message: 'Successfully registered.' });
+      res.status(200).json({ status: 200, message: 'Successfully registered.' });
     }
     catch(e){
       console.log(e);
-      res.status(500).json({ message: 'Internal server error' });
+      res.status(500).json({ status: 500, message: 'Internal server error' });
       return;
     }
   } else {

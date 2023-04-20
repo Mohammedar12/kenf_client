@@ -34,7 +34,7 @@ export default function Group({ pageCategories, group }) {
               pageCategories.map((category,index)=> (
                 <Link aria-label={i18n.language === "en" ? category.name_en : category.name_ar} href={"/category/"+category.id+'/'+id} key={"category_section_"+index} className={styles.category}>
                   <div className={styles.category_image_container}>
-                    <Image sizes='@media (max-width: 500px) 150px,@media (max-width: 767px) 200px, 360px' quality={45} src={category.images && category.images.length > 0 ? imageURI + category.images[0].link : ''} fill className={styles.category_image} alt={i18n.language === "en" ? category.name_en : category.name_ar}/>
+                    <Image sizes='@media (max-width: 500px) 150px,@media (max-width: 767px) 400px, 620px' quality={45} src={category.images && category.images.length > 0 ? imageURI + category.images[0].link : ''} fill className={styles.category_image} alt={i18n.language === "en" ? category.name_en : category.name_ar}/>
                   </div>
                   <h3 className={styles.category_name}>{i18n.language === "en" ? category.name_en : category.name_ar}</h3>
                 </Link>

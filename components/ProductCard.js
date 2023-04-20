@@ -20,7 +20,7 @@ export default function ProductCard(props){
     return(
         <Link href={`/product/${encodeURIComponent(id)}`} className={`${styles.card} ${props.className ? props.className : ''}`}>
             <div className={`${styles.imageContainer}`}>
-                <Image sizes='(max-width: 650px) 150px,300px' src={imageLink} fill className={styles.card_image} alt={i18n.language === 'en' ? name_en : name_ar}/>
+                <Image sizes='(max-width: 650px) 300px,600px' src={imageLink} fill className={styles.card_image} alt={i18n.language === 'en' ? name_en : name_ar}/>
             </div>
             <div className={styles.info}>
                 <h5 className={styles.title}>{i18n.language === 'en' ? name_en : name_ar}</h5>

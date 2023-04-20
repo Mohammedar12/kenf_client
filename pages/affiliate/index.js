@@ -74,6 +74,7 @@ export default function Affiliate (props) {
       )
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
           if(data.status !== 200){
             toast.error(data.message,{
               position: "top-right",

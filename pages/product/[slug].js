@@ -173,7 +173,7 @@ export default function Product(props) {
               <Image 
                 src={imageURI + item.link}
                 quality={60}  
-                sizes='70vw'
+                sizes='100vw'
                 fill
                 className={styles.product_viewer_img}
                 alt="" />
@@ -261,7 +261,7 @@ export default function Product(props) {
                       quality={30}
                       src={imageURI + ""+item.link}
                       alt={i18n.language === "en" ? product.name_en : product.name_ar}
-                      sizes="70px"
+                      sizes="100px"
                     />
                   </a>
                 ))}
@@ -280,7 +280,7 @@ export default function Product(props) {
                     quality={60}
                     src={selectedImage && selectedImage!='' ? (imageURI + "" + selectedImage) : ''}
                     alt="product main image"
-                    sizes='@media(max-width: 650px) 90vw, 35vw'
+                    sizes='@media(max-width: 650px) 100vw, 65vw'
                   />
                 </div>
                 <div className="favorite-icon"></div>

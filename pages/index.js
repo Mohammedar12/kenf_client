@@ -42,7 +42,7 @@ export default function Home({ groups, pageCategories, collections, exclusive_pr
               pageCategories.map((category,index)=> (
                 <Link aria-label={i18n.language === "en" ? category.name_en : category.name_ar} href={"/category/"+category.id} key={"category_section_"+index} className={styles.category}>
                   <div className={styles.category_image_container}>
-                    <Image sizes='@media (max-width: 500px) 150px,@media (max-width: 767px) 200px, 360px' quality={45} src={category.images && category.images.length > 0 ? imageURI + category.images[0].link : ''} fill className={styles.category_image} alt={i18n.language === "en" ? category.name_en : category.name_ar}/>
+                    <Image sizes='@media (max-width: 500px) 250px,@media (max-width: 767px) 400px, 620px' quality={45} src={category.images && category.images.length > 0 ? imageURI + category.images[0].link : ''} fill className={styles.category_image} alt={i18n.language === "en" ? category.name_en : category.name_ar}/>
                   </div>
                   <h3 className={styles.category_name}>{i18n.language === "en" ? category.name_en : category.name_ar}</h3>
                 </Link>
@@ -57,7 +57,7 @@ export default function Home({ groups, pageCategories, collections, exclusive_pr
               collections.map((collection,index)=> (
                 <Link aria-label={i18n.language === "en" ? collection.name_en : collection.name_ar} href={"/category/"+collection.id} key={"collection_section_"+index} className={styles.collection}>
                   <div className={styles.collection_image_container}>
-                    <Image sizes='@media (max-width: 767px) 40vw, 290px' quality={50} src={collection.images && collection.images.length > 0 ? imageURI + collection.images[0].link : ''} fill className={styles.collection_image} alt={i18n.language === "en" ? collection.name_en : collection.name_ar}/>
+                    <Image sizes='@media (max-width: 767px) 65vw, 600px' quality={50} src={collection.images && collection.images.length > 0 ? imageURI + collection.images[0].link : ''} fill className={styles.collection_image} alt={i18n.language === "en" ? collection.name_en : collection.name_ar}/>
                   </div>
                   <h3 className={styles.collection_name}>{i18n.language === "en" ? collection.name_en : collection.name_ar}</h3>
                 </Link>

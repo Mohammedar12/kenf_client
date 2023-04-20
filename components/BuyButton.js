@@ -44,7 +44,7 @@ export default function BuyButton(props) {
             !isSmallScreen
               ? { backgroundColor: "" }
               : outofStock !== true
-              ? { backgroundColor: "#fff" }
+              ? {  }
               : { backgroundColor: "#f7e8d2" }
           }
         >

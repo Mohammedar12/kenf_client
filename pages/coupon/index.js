@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import styles from '../../styles/coupon.module.css';
 import { FaChartLine, FaUser, FaMoneyBill } from 'react-icons/fa';
 import Modal from '@/components/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from '../../utils/auth_axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,15 +31,14 @@ export default function Coupon(props){
     const coupons = data ? [].concat(...(data.map((val)=>val.docs))) : [];
     const isReachingEnd = data && data.length != 0 ? data[data.length-1].hasNextPage === false : true;
 
-    useState(async ()=>{
+    useEffect(()=>{
         if(selectedCoupon){
+            setCouponLoading(true);
             setCoupon();
-            try{
-                const couponResponse = await axios.get('/market/coupon/stats/'+selectedCoupon);
+            axios.get('/market/coupon/stats/'+selectedCoupon).then((couponResponse)=>{
                 setCoupon(couponResponse.data.data);
                 setCouponLoading(false);
-            }
-            catch(e){
+            }).catch(e=>{
                 if(e.response?.data?.message){
                     toast.error(e.response.data.message,{
                         position: "top-right",
@@ -55,7 +54,7 @@ export default function Coupon(props){
                     });
                 }
                 selectCoupon();
-            }
+            });
         }
         else{
             setCoupon();
@@ -119,7 +118,7 @@ export default function Coupon(props){
                                     <FaMoneyBill size={16} style={{ marginTop: 5 }}/>
                                     <div className='d-flex flex-column'>
                                         <div className="title">&nbsp;&nbsp;&nbsp;Profit</div>
-                                        <div className="amount">&nbsp;&nbsp;&nbsp;{coupon?.profit} SAR</div>
+                                        <div className="amount">&nbsp;&nbsp;&nbsp;{coupon?.profit ? coupon.profit : 0} SAR</div>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +133,7 @@ export default function Coupon(props){
 }
 
 export async function getServerSideProps({ req, locale, res }) {
-    let coupons = {};
+    let coupons = [];
     try{
         coupons = await axios.get('/market/coupon?limit=20&page=1',{
             withCredentials: true,
@@ -181,7 +180,7 @@ export async function getServerSideProps({ req, locale, res }) {
       props: {
         groups,
         categories,
-        coupons,
+        coupons: [coupons],
         ...(await serverSideTranslations(locale, ['common'])),
       }, 
     }
