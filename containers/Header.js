@@ -38,7 +38,7 @@ const Header = (props) => {
 
     const logout = async() =>{
         try{
-            const response = axios.post('/auth/logout',{},{
+            const response = await axios.post('/auth/logout',{},{
                 withCredentials: true
             });
             localStorage.removeItem("user");
