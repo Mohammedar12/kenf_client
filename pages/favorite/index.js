@@ -31,13 +31,13 @@ export default function Favorite({ favorites }){
     const isReachingEnd = data && data.length != 0 ? data[data.length-1].hasNextPage === false : true;
 
     const removedFromFavorite = (id) => {
-        mutate((data)=>{ data.map((val)=> {
+        mutate((data)=>( data.map((val)=> {
                 return {
                     ...val,
                     docs: val?.docs?.filter((val2)=> (val2.product.id !== id)) 
                 };
             })
-        }, false);
+        ), false);
     };
 
     const addedToCart = (id) => {

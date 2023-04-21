@@ -81,7 +81,7 @@ export default function Checkout(props){
                 }
             });
             let coupon = couponResponse.data.data;
-            if(coupon.total_purchase_condition && coupon.total_purchase_condition != 0 && coupon.total_purchase_condition < checkOut.totalShoppingBag){
+            if(coupon.total_purchase_condition && coupon.total_purchase_condition != 0 && coupon.total_purchase_condition > checkOut.totalShoppingBag){
                 toast.error("Minimum "+coupon.total_purchase_condition+" is required to apply this coupon.", {
                     position: "top-right",
                     autoClose: 3000,
@@ -111,6 +111,7 @@ export default function Checkout(props){
 
     const removeCoupon = () => {
         setCoupon();
+        setCouponCode('');
     };
 
     const saveAddress = data =>{
