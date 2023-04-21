@@ -75,7 +75,7 @@ export default function Checkout(props){
     const couponApply = async() => {
         setCouponLoading(true);
         try{
-            let couponResponse = await axios.get('/settings/coupon/apply',{
+            let couponResponse = await axios.get('/market/coupon/apply',{
                 params: {
                     code: couponCode
                 }
