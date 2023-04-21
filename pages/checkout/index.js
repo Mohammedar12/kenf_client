@@ -368,7 +368,7 @@ export default function Checkout(props){
                                 </div>
                             </div>
                             <div className="discount-code" style={{ position: 'relative' }}>
-                                <button onClick={()=>{ coupon?.id ? couponApply() : removeCoupon();}}>{coupon?.id ? t('remove') : t('apply')}</button>
+                                <button onClick={()=>{ coupon?.id ? removeCoupon() : couponApply();}}>{coupon?.id ? t('remove') : t('apply')}</button>
                                 <input style={{ textTransform: 'uppercase' }} type="text" placeholder={t('discount_code')} value={couponCode} onChange={e => setCouponCode(e.target.value)} dir="auto" disabled={coupon?.id ? true : false} />
                                 {
                                     couponLoading ? 
