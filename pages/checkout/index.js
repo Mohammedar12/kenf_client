@@ -335,7 +335,7 @@ export default function Checkout(props){
                                             <div key={index} className="order d-flex gap-2 align-items-center">
                                                 <div className="order_img" >
                                                 {
-                                                        item?.images === undefined ? "..." : <Image fill src={item.mainImage?.link ? ( imageURI + item.mainImage.link ) : ( item.images ? item.images[0].link : '' ) } alt="..." />
+                                                        item?.images === undefined ? "..." : <Image fill src={item.mainImage?.link ? ( imageURI + item.mainImage.link ) : ( item.images ? imageURI + item.images[0].link : '' ) } alt="..." />
                                                     }
                                                 </div>
                                                 <div className="order_price">
