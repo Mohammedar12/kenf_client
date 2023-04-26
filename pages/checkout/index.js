@@ -50,6 +50,9 @@ export default function Checkout(props){
         if(coupon?.id){
             if(coupon.discount_type === 'percent'){
                 discount = (subTotal * coupon.discount ) / 100;
+                if(coupon.maxDiscount){
+                    discount = discount > coupon.max_discount ? coupon.max_discount : discount;
+                }
             } else if(coupon.discount_type === 'fixed'){
                 discount = coupon.discount;
             }
@@ -87,6 +90,7 @@ export default function Checkout(props){
                     autoClose: 3000,
                     hideProgressBar: true,
                 });
+                return;
             }
             setCoupon(couponResponse.data.data);
         }

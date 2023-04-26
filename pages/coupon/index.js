@@ -104,17 +104,17 @@ export default function Coupon(props){
                     <div>
                         <div className="content d-flex gap-4 flex-column align-items-center ">
                             <div className="boxes">
-                                <div className="box" style={{ textAlign: 'center' }}>
+                                <div className="box" style={{ textAlign: 'center', marginBottom: 20 }}>
                                     <h3>{coupon?.code}</h3>
                                 </div>
-                                <div className="box d-flex">
+                                <div className="box d-flex" style={{ fontSize: 20, marginBottom: 10 }}>
                                     <FaUser size={16} style={{ marginTop: 5 }}/>
                                     <div className='d-flex flex-column'>
                                         <div className="title">&nbsp;&nbsp;&nbsp;Number Of Usage</div>
                                         <div className="amount">&nbsp;&nbsp;&nbsp;{coupon?.count}</div>
                                     </div>
                                 </div>
-                                <div className="box d-flex">
+                                <div className="box d-flex" style={{ fontSize: 20, marginBottom: 10 }}>
                                     <FaMoneyBill size={16} style={{ marginTop: 5 }}/>
                                     <div className='d-flex flex-column'>
                                         <div className="title">&nbsp;&nbsp;&nbsp;Profit</div>

@@ -96,7 +96,9 @@
     padding-left: 0.5rem;
     text-align: center;
     vertical-align: middle;
-    padding-top: 0.1rem;
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .input{
     font-size: 1rem;

@@ -174,7 +174,7 @@ const LoginModal = (props) => {
             }
             {
                 loginType === 'phone' ?
-                    <div className={styles.form_container} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+                    <form onSubmit={(e)=>{e.preventDefault();handleLoginButton();}} className={styles.form_container} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
                         <div className={styles.input_control}>
                             <label className={styles.input_label}>{t("phone")} *</label>
                             <div className={styles.input_container}>
@@ -224,13 +224,13 @@ const LoginModal = (props) => {
                                     {t("go")}
                                 </button>
                         }
-                    </div>
+                    </form>
                 :
                 <></>
             }
             {
                 loginType === 'email' ?
-                    <div className={styles.form_container} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+                    <form onSubmit={(e)=>{e.preventDefault();handleLoginButton();}} className={styles.form_container} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
                         <div className={styles.input_control}>
                             <label className={styles.input_label}>{t("email")} *</label>
                             <div className={styles.input_container}>
@@ -279,7 +279,7 @@ const LoginModal = (props) => {
                                     {t("go")}
                                 </button>
                         }
-                    </div>
+                    </form>
                 :
                 <></>
             }
