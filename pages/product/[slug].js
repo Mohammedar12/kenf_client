@@ -300,9 +300,13 @@ export default function Product(props) {
               </div>
               <div className="desc accordion accordionInfoExpanded">
                 <div className="accordion-item">
-                  <button className={styles.info_expandable_btn} onClick={()=>{setAccordionInfoExpanded(accordionInfoExpanded !== 0 ? 0 : undefined);}}>
-                      {t("description")}
-                  </button>
+                  <div className="accordion-header">
+                    <button onClick={()=>{setAccordionInfoExpanded(accordionInfoExpanded !== 0 ? 0 : undefined);}} className={`accordion-button ${accordionInfoExpanded === 0 ? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse"
+                        data-bs-target={`#flush-collapseFaq-${accordionInfoExpanded}`} aria-expanded="false"
+                        aria-controls={`flush-collapseFaq-${accordionInfoExpanded}`}>
+                       {t("description")}
+                    </button>
+                  </div>
                   <div className={'text-end accordion_custom_exandable'+(accordionInfoExpanded === 0 ? ' accordion_custom_exanded' : '')+' '+styles.info_accordion_item}>
                     <div className="item the-desc pt-2">
                       {i18n.language === "en"
@@ -312,11 +316,13 @@ export default function Product(props) {
                   </div>
                 </div>
                 <div className="accordion-item">
-                  <button className={styles.info_expandable_btn} onClick={()=>{setAccordionInfoExpanded(accordionInfoExpanded !== 1 ? 1 : undefined);}}>
-                    
-                      {t("specifications")}
-                
-                  </button>
+                  <div className="accordion-header">
+                    <button onClick={()=>{setAccordionInfoExpanded(accordionInfoExpanded !== 1 ? 1 : undefined);}} className={`accordion-button ${accordionInfoExpanded === 1 ? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse"
+                        data-bs-target={`#flush-collapseFaq-${accordionInfoExpanded}`} aria-expanded="false"
+                        aria-controls={`flush-collapseFaq-${accordionInfoExpanded}`}>
+                       {t("specifications")}
+                    </button>
+                  </div>
                   <div className={'text-end accordion_custom_exandable'+(accordionInfoExpanded === 1 ? ' accordion_custom_exanded' : '')+' '+styles.info_accordion_item}>
                     <div className="item the-features pt-2">
                       <div className="feature">

@@ -14,6 +14,8 @@ import { AuthContext } from "@/context/AuthContext";
 import dynamic from "next/dynamic";
 import axios from '../utils/auth_axios';
 import { getCookie } from 'cookies-next';
+import Modal from "@/components/Modal";
+import { locale } from "moment";
 
 const HeaderIcons = dynamic(() => import('@/components/HeaderIcons'), {
     ssr: false,
@@ -23,6 +25,7 @@ const Header = (props) => {
     const { t, i18n } = useTranslation();
 
     const [mobileMenu, showMobileMenu] = useState(false);
+    const [searchVisible, showSearch] = useState(false);
     const router = useRouter();
     const { isAuth, setIsAuth, visibleLoginModal, showLoginModal } = useContext(AuthContext);
 
@@ -78,7 +81,7 @@ const Header = (props) => {
                                     }
                                 </ul>
                             </div>
-                            <FaSearch size={18}/>
+                            <FaSearch size={18} onClick={()=>{showSearch(!visibleLoginModal)}} style={{ cursor: 'pointer' }}/>
                             <button aria-label="Menu open" onClick={()=>{showMobileMenu(true)}} className={styles.menuButton}>
                                 <GrMenu size={18}/>
                             </button>
@@ -88,6 +91,11 @@ const Header = (props) => {
                 <SubHeader mobileMenu={mobileMenu} showMobileMenu={showMobileMenu} categories={props.categories} groups={props.groups}/>
             </nav>
             <LoginModal show={visibleLoginModal} onModalClose={()=>{showLoginModal(false);}} cancelable={false}/>
+            <Modal show={searchVisible} onModalClose={()=>{showSearch(false);}} cancelable={true}>
+                <div style={{border: 'none', paddingLeft: 10, paddingRight: 10, width: '100%', display: 'flex', flexDirection: 'column'}} onClick={(e)=>{e.stopPropagation();}}>
+                    <input dir={locale === 'ar' ? 'rtl' : 'ltr'} className="search focused" type="search" name="" placeholder={t('search')} style={{ padding: 5 }}/>
+                </div>
+            </Modal>
         </>
     );
 };
