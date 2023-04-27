@@ -16,6 +16,7 @@ import axios from '../utils/auth_axios';
 import { getCookie } from 'cookies-next';
 import Modal from "@/components/Modal";
 import { locale } from "moment";
+import Logo2 from '../public/images/logo-3.svg';
 
 const HeaderIcons = dynamic(() => import('@/components/HeaderIcons'), {
     ssr: false,
@@ -92,7 +93,14 @@ const Header = (props) => {
             </nav>
             <LoginModal show={visibleLoginModal} onModalClose={()=>{showLoginModal(false);}} cancelable={false}/>
             <Modal show={searchVisible} onModalClose={()=>{showSearch(false);}} cancelable={true}>
-                <div style={{border: 'none', paddingLeft: 10, paddingRight: 10, width: '100%', display: 'flex', flexDirection: 'column'}} onClick={(e)=>{e.stopPropagation();}}>
+                <div style={{border: 'none', paddingLeft: 10, paddingRight: 10, width: '100%', display: 'flex', flexDirection: 'column', gap: 20}} onClick={(e)=>{e.stopPropagation();}}>
+                    <div style={{ marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
+                        <Image
+                            width={70}
+                            src={Logo2}
+                            alt="kenf logo"
+                        />
+                    </div>
                     <input dir={locale === 'ar' ? 'rtl' : 'ltr'} className="search focused" type="search" name="" placeholder={t('search')} style={{ padding: 5 }}/>
                 </div>
             </Modal>

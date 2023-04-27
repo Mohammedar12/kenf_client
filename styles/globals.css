@@ -3679,7 +3679,6 @@ footer .contact-us ul .media {
 }
 
 .faqs .accordion-button:not(.collapsed)::after {
-  background-image: url(img/angle-down.svg) !important;
   transform: rotate(-180deg);
   -webkit-transform: rotate(-180deg);
   -moz-transform: rotate(-180deg);
