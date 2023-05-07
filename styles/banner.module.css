@@ -1,0 +1,34 @@
+.banner_section{
+    width: 100%;
+    position: relative;
+}
+.banner{
+    position: relative;
+    width: 100% !important;
+    height: auto;
+    object-fit: cover;
+}
+.banner img{
+    display: block;
+    position: unset!important;
+}
+.dots {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.dot{
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    background: white;
+    cursor: pointer;
+}
+.dot_active{
+    background: var(--main-color);
+}
