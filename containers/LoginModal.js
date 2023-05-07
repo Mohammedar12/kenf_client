@@ -156,7 +156,7 @@ const LoginModal = (props) => {
                     alt="Kenf logog"
                     width={90}
                 />
-                 <h6>مرحبا بكم في كِنف</h6>
+                 <h6> مرحبا بكم في كِنف</h6>
             </div>
             {
                 !loginType ?
