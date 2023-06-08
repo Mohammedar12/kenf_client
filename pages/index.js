@@ -11,11 +11,16 @@ import Link from 'next/link';
 import Banner from '@/components/Banner';
 import ExclusiveProducts from '@/containers/ExclusiveProducts';
 import axios from '../utils/noauth_axios';
+import { useEffect } from 'react';
 
 
 export default function Home({ groups, pageCategories, collections, exclusive_products }) {
   
   const { t, i18n } = useTranslation();
+
+  useEffect( () => {
+    console.log(groups , "home");
+  } , [])
 
   return (
     <>
