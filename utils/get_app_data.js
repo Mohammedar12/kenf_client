@@ -16,7 +16,6 @@ const _fetchData = async () => {
         }
       });
       groups = groups.data.data.docs;
-      console.log( groups.data.data + "ds")
     }
     catch(e){console.log(e);}
   
