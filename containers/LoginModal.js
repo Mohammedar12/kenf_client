@@ -338,7 +338,7 @@ const LoginModal = (props) => {
                               <div className={styles.input_control}>
                                   <label className={styles.input_label}>{t("verification_code")} *</label>
                                   <div className={styles.input_container}>
-                                      <input value={phoneVerificationCode} onInput={(e) => { e.target.value.length == 4 && setPhoneVerificationCode(e.target.value), handleLoginButton()}} className={styles.input} type="text" placeholder={t("enter_verification_code")}/>
+                                      <input value={phoneVerificationCode} onChange={(e)=>{setPhoneVerificationCode(e.target.value)}} className={styles.input} type="text" placeholder={t("enter_verification_code")}/>
                                   </div>
                               </div>
                           :
@@ -393,7 +393,7 @@ const LoginModal = (props) => {
                               <div className={styles.input_control}>
                                   <label className={styles.input_label}>{t("verification_code")} *</label>
                                   <div className={styles.input_container}>
-                                      <input value={emailVerificationCode} onChange={(e)=>{setEmailVerificationCode(e.target.value)}} onInput={(e) => { e.target.value.length === 4 &&  handleLoginButton()}} maxLength={4}  className={styles.input} type="text" placeholder={t("enter_verification_code")}/>
+                                      <input value={emailVerificationCode} onChange={(e)=>{setEmailVerificationCode(e.target.value)}} className={styles.input} type="text" placeholder={t("enter_verification_code")}/>
                                   </div>
                               </div>
                           :
