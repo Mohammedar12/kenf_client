@@ -337,17 +337,17 @@ export default function Product(props) {
                   {product.extra_price} {t("sar")}{" "}
                 </div>
               </div>
-              {product?.brand ? (
+              {/* {product?.brand ? (
                 <div className="brand d-flex justify-content-between align-items-center w-100 fw-bold">
                   <div>Brand :</div>
                   <div>
                     <span className="num pe-2">
                       {i18n.language === "en"
-                        ? product.brand.name_en
-                        : product.brand.name_ar}
+                        ? product?.brand?.name_en
+                        : product?.brand?.name_ar}
                     </span>
                     <Image
-                      src={imageURI + product?.brand?.images[0].link}
+                      src={imageURI + product?.brand?.images[0]?.link}
                       priority="true"
                       className="next_image"
                       width={40}
@@ -357,7 +357,7 @@ export default function Product(props) {
                     />
                   </div>
                 </div>
-              ) : null}
+              ) : null} */}
               <div className="desc accordion accordionInfoExpanded">
                 <div className="accordion-item">
                   <button
