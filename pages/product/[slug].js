@@ -350,8 +350,7 @@ export default function Product(props) {
                       src={imageURI + product?.brand[0]?.images[0]?.link}
                       priority="true"
                       className="next_image"
-                      width={40}
-                      height={40}
+                      sizes="60px"
                       quality={100}
                       alt="aa"
                     />
