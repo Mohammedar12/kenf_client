@@ -343,8 +343,8 @@ export default function Product(props) {
                   <div>
                     <span className="num pe-2">
                       {i18n.language === "en"
-                        ? product?.brand?.name_en
-                        : product?.brand?.name_ar}
+                        ? product?.brand[0]?.name_en
+                        : product?.brand[0]?.name_ar}
                     </span>
                     <Image
                       // src={imageURI + product?.brand?.images[0]?.link}
