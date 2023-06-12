@@ -347,7 +347,7 @@ export default function Product(props) {
                         : product?.brand[0]?.name_ar}
                     </span>
                     <Image
-                      // src={imageURI + product?.brand?.images[0]?.link}
+                      src={imageURI + product?.brand[0]?.images[0]?.link}
                       priority="true"
                       className="next_image"
                       width={40}
@@ -357,7 +357,9 @@ export default function Product(props) {
                     />
                   </div>
                 </div>
-              ) : ''}
+              ) : (
+                ""
+              )}
               <div className="desc accordion accordionInfoExpanded">
                 <div className="accordion-item">
                   <button
