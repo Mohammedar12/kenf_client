@@ -337,11 +337,13 @@ export default function Product(props) {
                   {product.extra_price} {t("sar")}{" "}
                 </div>
               </div>
-              {product.brand ? (
-                <div className="brand d-flex justify-content-between align-items-center w-100 fw-bold">
-                  <div>Brand :</div>
+              {!product.brand.length ? (
+                ""
+              ) : (
+                <div className=" d-flex justify-content-between align-items-center w-100 fw-bold">
+                  <div className="brand">Brand :</div>
                   <div>
-                    <span className="num pe-2">
+                    <span className="num pe-2" style={{fontSize : "14px"}}> 
                       {i18n.language === "en"
                         ? product?.brand[0]?.name_en
                         : product?.brand[0]?.name_ar}
@@ -350,14 +352,12 @@ export default function Product(props) {
                       src={imageURI + product?.brand[0]?.images[0]?.link}
                       priority="true"
                       className="next_image"
-                      sizes="60px"
+                      sizes="75px"
                       quality={100}
                       alt="aa"
                     />
                   </div>
                 </div>
-              ) : (
-                ""
               )}
               <div className="desc accordion accordionInfoExpanded">
                 <div className="accordion-item">
