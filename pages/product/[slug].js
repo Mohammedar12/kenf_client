@@ -337,7 +337,7 @@ export default function Product(props) {
                   {product.extra_price} {t("sar")}{" "}
                 </div>
               </div>
-              {/* {product?.brand ? (
+              {product.brand ? (
                 <div className="brand d-flex justify-content-between align-items-center w-100 fw-bold">
                   <div>Brand :</div>
                   <div>
@@ -357,7 +357,7 @@ export default function Product(props) {
                     />
                   </div>
                 </div>
-              ) : null} */}
+              ) : null}
               <div className="desc accordion accordionInfoExpanded">
                 <div className="accordion-item">
                   <button
