@@ -357,7 +357,7 @@ export default function Product(props) {
                     />
                   </div>
                 </div>
-              ) : null}
+              ) : ''}
               <div className="desc accordion accordionInfoExpanded">
                 <div className="accordion-item">
                   <button
