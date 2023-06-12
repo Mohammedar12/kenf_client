@@ -343,11 +343,11 @@ export default function Product(props) {
                   <div>
                     <span className="num pe-2">
                       {i18n.language === "en"
-                        ? product.brand.name_en
-                        : product.brand.name_ar}
+                        ? product?.brand?.name_en
+                        : product?.brand?.name_ar}
                     </span>
                     <Image
-                      src={imageURI + product?.brand?.images[0].link}
+                      src={imageURI + product?.brand?.images[0]?.link}
                       priority="true"
                       className="next_image"
                       width={40}
