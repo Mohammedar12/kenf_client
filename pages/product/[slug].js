@@ -340,8 +340,8 @@ export default function Product(props) {
               {!product.brand.length ? (
                 ""
               ) : (
-                <div className=" d-flex justify-content-between align-items-center w-100 fw-bold">
-                  <div className="brand">Brand :</div>
+                <div className="brand d-flex justify-content-between align-items-center w-100 ">
+                  <div className="fw-bold">Brand :</div>
                   <div>
                     <span className="num pe-2" style={{fontSize : "14px"}}> 
                       {i18n.language === "en"
