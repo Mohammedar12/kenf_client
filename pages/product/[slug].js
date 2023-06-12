@@ -347,7 +347,7 @@ export default function Product(props) {
                         : product?.brand?.name_ar}
                     </span>
                     <Image
-                      src={imageURI + product?.brand?.images[0]?.link}
+                      // src={imageURI + product?.brand?.images[0]?.link}
                       priority="true"
                       className="next_image"
                       width={40}
